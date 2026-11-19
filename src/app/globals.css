@@ -1,0 +1,209 @@
+@import "tailwindcss";
+
+:root {
+  /* Palette extracted from the Stitch screens */
+  --ink: #070502;
+  --ink-home: #000000;
+  --bone: #f6f3ee;
+  --gold: #c09426;
+  --gold-home: #cda448;
+  --line: #c8c4bc;
+  --line-dark: #45423b;
+  --muted: #5f5c55;
+  --muted-light: #a29f9b;
+  --panel: #fbfaf7;
+  --tint: #e7e4dd;
+  --tint-strong: #ece7de;
+  --field: #020101;
+  --field-deep: #020201;
+  --field-warm: #161207;
+
+  --container: 1140px;
+  --gutter: 56px;
+  --radius-hairline: 2px;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-bone: var(--bone);
+  --color-gold: var(--gold);
+  --color-gold-home: var(--gold-home);
+  --color-line: var(--line);
+  --color-line-dark: var(--line-dark);
+  --color-muted: var(--muted);
+  --color-muted-light: var(--muted-light);
+  --color-panel: var(--panel);
+  --color-tint: var(--tint);
+  --color-tint-strong: var(--tint-strong);
+  --color-ink-home: var(--ink-home);
+
+  --font-display: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-body: var(--font-inter), Inter, Arial, sans-serif;
+  --font-mono: var(--font-plex-mono), "IBM Plex Mono", monospace;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--bone);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--gold);
+    color: var(--ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 4px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .container-shell {
+    width: 100%;
+    max-width: calc(var(--container) + var(--gutter) * 2);
+    margin-inline: auto;
+    padding-inline: 28px;
+  }
+
+  @media (min-width: 1024px) {
+    .container-shell {
+      padding-inline: var(--gutter);
+    }
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .hairline {
+    border-color: var(--line);
+  }
+
+  .dark .hairline,
+  [data-tone="dark"] .hairline {
+    border-color: var(--line-dark);
+  }
+
+  .display-xl {
+    font-size: clamp(3.5rem, 8.2vw, 6rem);
+    line-height: 0.94;
+  }
+
+  .display-lg {
+    font-size: clamp(2.75rem, 6vw, 4.5rem);
+    line-height: 0.98;
+  }
+
+  .display-md {
+    font-size: clamp(2.25rem, 4.6vw, 3.5rem);
+    line-height: 1.02;
+  }
+
+  .lede {
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    line-height: 1.55;
+    color: var(--muted);
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal[data-visible="true"] {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      will-change: auto;
+    }
+  }
+}
+
+/* Dark surfaces */
+.tone-dark {
+  background: var(--ink);
+  color: var(--bone);
+}
+
+.tone-dark-home {
+  background: var(--ink-home);
+  color: var(--bone);
+}
+
+.tone-dark .lede,
+.tone-dark-home .lede {
+  color: var(--muted-light);
+}
+
+.tone-dark .hairline,
+.tone-dark-home .hairline {
+  border-color: var(--line-dark);
+}
+
+/* Decorative SVG strokes inherit currentColor unless overridden */
+svg.decorative {
+  pointer-events: none;
+}
