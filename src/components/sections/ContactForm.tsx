@@ -22,14 +22,14 @@ const fieldClass =
 
 export function ContactForm({ platform }: ContactFormProps) {
   const [errors, setErrors] = useState<FieldErrors>({});
-  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
-  const [notice, setNotice] = useState("");
+  const [status, setStatus] = useState<"idle" | "sending">("idle");
+  const [sent, setSent] = useState<{ fallback: boolean } | null>(null);
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus("sending");
     setErrors({});
-    setNotice("");
+    setSent(null);
 
     const form = event.currentTarget;
     const data = new FormData(form);
@@ -57,18 +57,51 @@ export function ContactForm({ platform }: ContactFormProps) {
       }
 
       form.reset();
-      setStatus("sent");
-      setNotice(
-        result.fallback
-          ? "Thank you. Our mail service is not configured yet, so please also write to system@matrka.net."
-          : "Thank you. Your correspondence has been received.",
-      );
+      setSent({ fallback: Boolean(result.fallback) });
+      setStatus("idle");
     } catch {
       setErrors({
         form: "The message could not be sent. Please mail us at system@matrka.net.",
       });
       setStatus("idle");
     }
+  }
+
+  if (sent) {
+    return (
+      <div
+        role="status"
+        aria-live="polite"
+        className="border border-gold/60 bg-tint/40 p-8 md:p-12"
+      >
+        <div className="flex items-start gap-6">
+          <span
+            aria-hidden="true"
+            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gold font-display text-2xl text-gold"
+          >
+            ✓
+          </span>
+          <div>
+            <p className="eyebrow text-gold">Message sent</p>
+            <h3 className="mt-4 font-display text-3xl leading-tight md:text-4xl">
+              {sent.fallback ? "Your note has been recorded." : "Your message is on its way."}
+            </h3>
+            <p className="lede mt-4 max-w-xl">
+              {sent.fallback
+                ? "Mail delivery is not configured yet, so please also write to system@matrka.net. Your note is saved in the server log."
+                : "Thank you. Your correspondence has been received. We will reply to the email address you provided."}
+            </p>
+            <button
+              type="button"
+              onClick={() => setSent(null)}
+              className="mt-8 inline-flex min-h-12 items-center justify-center border border-ink/30 px-6 py-3 font-mono text-[0.6875rem] uppercase tracking-[0.16em] transition-colors hover:border-gold hover:text-gold"
+            >
+              Send another message
+            </button>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -203,12 +236,6 @@ export function ContactForm({ platform }: ContactFormProps) {
       {errors.form ? (
         <p role="alert" className="border-l-2 border-red-700 pl-4 text-sm text-red-700">
           {errors.form}
-        </p>
-      ) : null}
-
-      {status === "sent" ? (
-        <p role="status" className="border-l-2 border-gold pl-4 text-sm">
-          {notice}
         </p>
       ) : null}
 

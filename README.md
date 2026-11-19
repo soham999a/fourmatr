@@ -50,6 +50,12 @@ Copy `.env.example` to `.env.local` and configure **one** provider:
 If no provider is configured, `/api/contact` logs the correspondence server-side and returns a
 fallback message asking the sender to mail `system@matrka.net`. No message is silently dropped.
 
+Resend note: the form only reports success when Resend accepts the message. A `403` from Resend
+usually means the `MAIL_FROM` domain is not verified, or the `onboarding@resend.dev` test sender is
+being used to send to an address outside your Resend account. Verify your domain in Resend and set
+`MAIL_FROM` to an address on that domain, or use your account email as `MAIL_TO` for a quick test.
+Provider errors are logged in Vercel Runtime Logs with the response body for diagnosis.
+
 The endpoint applies Zod validation, a honeypot field and an in-memory rate limit (5 requests per
 10 minutes per IP). For multi-instance deployments, replace the in-memory store in
 `src/lib/rate-limit.ts` with Redis or another shared store.

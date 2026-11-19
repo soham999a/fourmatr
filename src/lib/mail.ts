@@ -43,7 +43,8 @@ export async function sendCorrespondence(payload: MailPayload): Promise<MailResu
     });
 
     if (!response.ok) {
-      throw new Error(`Mail provider responded ${response.status}`);
+      const detail = await response.text();
+      throw new Error(`Mail provider responded ${response.status}: ${detail}`);
     }
     return { status: "sent", provider: "resend" };
   }
