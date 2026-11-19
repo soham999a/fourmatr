@@ -40,6 +40,7 @@ export default function ResearchPage() {
             eyebrow="Frameworks"
             titleLines={["The ideas beneath", "the systems."]}
             index={RESEARCH_HERO.index}
+            ghost="R"
           />
         </Reveal>
         <div className="mt-14 space-y-6">
@@ -85,9 +86,9 @@ export default function ResearchPage() {
           <div className="mt-14 border-t border-line">
             {PUBLICATIONS.map((publication, index) => (
               <Reveal key={publication.id} delay={index * 60}>
-                <div className="grid gap-4 border-b border-line py-7 md:grid-cols-12 md:items-center">
+                <div className="group grid gap-4 border-b border-line py-7 md:grid-cols-12 md:items-center">
                   <div className="md:col-span-1">
-                    <span className="font-mono text-[0.625rem] tracking-[0.2em] text-muted">
+                    <span className="font-mono text-[0.625rem] tracking-[0.2em] text-muted transition-colors group-hover:text-gold">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                   </div>

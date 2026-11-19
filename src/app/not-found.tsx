@@ -1,4 +1,5 @@
 import { HeroField } from "@/components/figures/HeroField";
+import { PointerGlow } from "@/components/figures/PointerGlow";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 
@@ -8,6 +9,7 @@ export default function NotFound() {
       <div className="pointer-events-none absolute inset-0 text-bone/60">
         <HeroField variant="home" />
       </div>
+      <PointerGlow />
       <div className="container-shell relative py-24">
         <Eyebrow tone="bone">404 / Not found</Eyebrow>
         <h1 className="display-xl mt-8 max-w-4xl text-bone">This path does not resolve.</h1>

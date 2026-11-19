@@ -207,3 +207,345 @@
 svg.decorative {
   pointer-events: none;
 }
+
+/* ---------------------------------------------------------------------------
+   UI/UX feeling layer — quiet motion, paper texture and signal accents.
+   Everything is reduced-motion safe via the global media query above.
+--------------------------------------------------------------------------- */
+
+/* Paper grain, fixed and non-interactive */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  height: 2px;
+  width: 0;
+  background: var(--gold);
+  pointer-events: none;
+  transition: width 90ms linear;
+}
+
+.field-drift {
+  animation: fieldDrift 28s ease-in-out infinite alternate;
+}
+
+@keyframes fieldDrift {
+  from {
+    transform: translate3d(-8px, -4px, 0) scale(1.01);
+  }
+  to {
+    transform: translate3d(8px, 6px, 0) scale(1.03);
+  }
+}
+
+.node-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: nodePulse 5.5s ease-in-out infinite;
+}
+
+@keyframes nodePulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1.7);
+  }
+}
+
+.pointer-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    440px circle at var(--mx, 50%) var(--my, 45%),
+    rgba(205, 164, 72, 0.14),
+    transparent 66%
+  );
+}
+
+.scroll-cue {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.scroll-cue::after {
+  content: "";
+  width: 38px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.45;
+  transform: scaleX(0.45);
+  transform-origin: left;
+  transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.scroll-cue:hover::after {
+  transform: scaleX(1);
+}
+
+.hairline-draw {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal[data-visible="true"] .hairline-draw {
+  transform: scaleX(1);
+}
+
+.ghost-number {
+  position: absolute;
+  top: -0.18em;
+  right: 0;
+  font-family: var(--font-display);
+  font-size: clamp(6rem, 12vw, 10rem);
+  line-height: 1;
+  color: var(--gold);
+  opacity: 0.06;
+  pointer-events: none;
+  user-select: none;
+}
+
+.line-reveal {
+  display: block;
+  clip-path: inset(0 0 100% 0);
+  transform: translateY(10px);
+  opacity: 0.001;
+  transition:
+    clip-path 800ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 800ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 400ms ease;
+}
+
+.reveal[data-visible="true"] .line-reveal {
+  clip-path: inset(0 0 0 0);
+  transform: none;
+  opacity: 1;
+}
+
+.reveal[data-visible="true"] .line-reveal:nth-child(2) {
+  transition-delay: 90ms;
+}
+
+.reveal[data-visible="true"] .line-reveal:nth-child(3) {
+  transition-delay: 180ms;
+}
+
+.eyebrow {
+  transition:
+    letter-spacing 350ms ease,
+    color 350ms ease;
+}
+
+.hover-card:hover .eyebrow,
+a:hover > .eyebrow,
+button:hover > .eyebrow {
+  letter-spacing: 0.24em;
+}
+
+.hover-card {
+  overflow: hidden;
+  transition:
+    transform 450ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 450ms ease,
+    background-color 450ms ease;
+}
+
+.hover-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--gold);
+}
+
+.card-figure {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -8%;
+  height: 62%;
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition:
+    opacity 500ms ease,
+    transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hover-card:hover .card-figure {
+  opacity: 0.32;
+  transform: none;
+}
+
+.status-pulse {
+  animation: statusPulse 2.8s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(192, 148, 38, 0.45);
+  }
+  50% {
+    opacity: 0.65;
+    box-shadow: 0 0 0 4px rgba(192, 148, 38, 0);
+  }
+}
+
+.figure-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.figure-glow::before {
+  content: "";
+  position: absolute;
+  inset: -18%;
+  background: radial-gradient(circle at 50% 45%, rgba(192, 148, 38, 0.1), transparent 62%);
+  pointer-events: none;
+}
+
+.layer-panel {
+  animation: panelIn 450ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes panelIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.layer-bar {
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.layer-button[aria-pressed="true"] .layer-bar {
+  transform: scaleY(1);
+}
+
+.btn-wipe {
+  --wipe-color: var(--gold);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.btn-wipe::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--wipe-color);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.btn-wipe:hover::before {
+  transform: scaleX(1);
+}
+
+.btn-wipe-light {
+  --wipe-color: #d8b45e;
+}
+
+.faq-answer {
+  animation: faqOpen 360ms ease-out both;
+}
+
+@keyframes faqOpen {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.stagger-item {
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 500ms ease,
+    transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 400ms ease;
+}
+
+.reveal[data-visible="true"] .stagger-item {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal[data-visible="true"] .stagger-item:nth-child(2) {
+  transition-delay: 120ms;
+}
+
+.reveal[data-visible="true"] .stagger-item:nth-child(3) {
+  transition-delay: 240ms;
+}
+
+.reveal[data-visible="true"] .stagger-item:nth-child(4) {
+  transition-delay: 360ms;
+}
+
+.check-path {
+  stroke-dasharray: 32;
+  stroke-dashoffset: 32;
+  animation: drawCheck 520ms 120ms ease-out forwards;
+}
+
+@keyframes drawCheck {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.mobile-nav-item {
+  animation: navItemIn 460ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes navItemIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.active-marker {
+  transform: scale(0);
+  transition: transform 350ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[aria-current="page"] .active-marker {
+  transform: scale(1);
+}

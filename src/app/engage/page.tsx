@@ -41,6 +41,7 @@ export default function EngagePage() {
             eyebrow="Engagement shapes"
             titleLines={["Four ways", "to begin."]}
             index="α — δ"
+            ghost="A"
             aside={<p className="lede">Each shape begins with the decision, not the model.</p>}
           />
         </Reveal>

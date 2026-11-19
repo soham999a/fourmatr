@@ -31,7 +31,7 @@ export function HeroField({ variant = "home", className }: HeroFieldProps) {
 
   return (
     <svg
-      className={cn("decorative h-full w-full", className)}
+      className={cn("decorative field-drift h-full w-full", className)}
       viewBox="0 0 1200 700"
       preserveAspectRatio="xMidYMid slice"
       aria-hidden="true"
@@ -48,7 +48,14 @@ export function HeroField({ variant = "home", className }: HeroFieldProps) {
       </g>
       <g fill={gold} opacity="0.6">
         {NODES.map((node, index) => (
-          <circle key={index} cx={node.cx} cy={node.cy} r={node.r} />
+          <circle
+            key={index}
+            cx={node.cx}
+            cy={node.cy}
+            r={node.r}
+            className={index % 4 === 0 ? "node-pulse" : undefined}
+            style={index % 4 === 0 ? { animationDelay: `${index * 0.4}s` } : undefined}
+          />
         ))}
       </g>
       <g fill="none" stroke="currentColor" strokeWidth="0.6" opacity="0.18">

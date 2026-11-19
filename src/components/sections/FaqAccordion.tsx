@@ -19,7 +19,9 @@ export function FaqAccordion({ items }: { items: FaqItem[] }) {
               +
             </span>
           </summary>
-          <p className="lede ml-9 mt-5 max-w-2xl text-sm md:text-base">{item.answer}</p>
+          <p className="faq-answer lede ml-9 mt-5 max-w-2xl text-sm md:text-base">
+            {item.answer}
+          </p>
         </details>
       ))}
     </div>

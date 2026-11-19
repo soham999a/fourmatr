@@ -22,7 +22,7 @@ export function StatusBadge({ status, className, tone = "light" }: StatusBadgePr
         aria-hidden="true"
         className={cn(
           "h-1 w-1 rounded-full",
-          status === "live" ? "bg-gold" : "bg-current opacity-60",
+          status === "live" ? "status-pulse bg-gold" : "bg-current opacity-60",
         )}
       />
       {STATUS_LABEL[status]}

@@ -47,6 +47,7 @@ export default function ArchitecturePage() {
             eyebrow="Five layers"
             titleLines={["One stack,", "five layers."]}
             index="L01 — L05"
+            ghost="L"
             aside={
               <p className="lede">
                 The platforms differ in purpose. The reasoning beneath them is deliberately shared.
@@ -76,12 +77,14 @@ export default function ArchitecturePage() {
             />
           </Reveal>
           <Reveal delay={80}>
-            <div className="mt-14 border border-line-dark p-4 md:p-8">
+            <div className="figure-glow mt-14 border border-line-dark p-4 md:p-8">
               <PlatformFigure kind="gravity" dark className="h-72 md:h-[30rem]" />
               <Rule className="mt-6" tone="dark" />
               <div className="mt-6 flex flex-wrap justify-between gap-4 font-mono text-[0.5625rem] uppercase tracking-[0.18em] text-muted-light">
                 {COMPOUNDING.platforms.map((name) => (
-                  <span key={name}>{name}</span>
+                  <span key={name} className="stagger-item">
+                    {name}
+                  </span>
                 ))}
               </div>
             </div>

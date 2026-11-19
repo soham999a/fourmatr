@@ -6,6 +6,7 @@ interface SectionHeaderProps {
   eyebrow: string;
   titleLines: string[];
   index?: string;
+  ghost?: string;
   aside?: ReactNode;
   className?: string;
   tone?: "light" | "dark";
@@ -16,6 +17,7 @@ export function SectionHeader({
   eyebrow,
   titleLines,
   index,
+  ghost,
   aside,
   className,
   tone = "light",
@@ -23,6 +25,11 @@ export function SectionHeader({
 }: SectionHeaderProps) {
   return (
     <div className={cn("relative", className)}>
+      {ghost ? (
+        <span aria-hidden="true" className="ghost-number">
+          {ghost}
+        </span>
+      ) : null}
       <div className="mb-8 flex items-start justify-between gap-6">
         <Eyebrow tone={tone === "dark" ? "bone" : "ink"}>{eyebrow}</Eyebrow>
         {index ? (
@@ -40,12 +47,13 @@ export function SectionHeader({
         <h2
           className={cn(
             aside ? "lg:col-span-7" : "max-w-4xl",
+            "relative z-10",
             size === "lg" ? "display-lg" : "display-md",
             tone === "dark" ? "text-bone" : "text-ink",
           )}
         >
           {titleLines.map((line) => (
-            <span key={line} className="block">
+            <span key={line} className="line-reveal">
               {line}
             </span>
           ))}

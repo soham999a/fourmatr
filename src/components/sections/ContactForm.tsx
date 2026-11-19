@@ -77,9 +77,11 @@ export function ContactForm({ platform }: ContactFormProps) {
         <div className="flex items-start gap-6">
           <span
             aria-hidden="true"
-            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gold font-display text-2xl text-gold"
+            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gold text-gold"
           >
-            ✓
+            <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path className="check-path" d="M4 12.5 L9.5 18 L20 6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
           </span>
           <div>
             <p className="eyebrow text-gold">Message sent</p>

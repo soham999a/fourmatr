@@ -44,10 +44,14 @@ export function LayerDiagram({ layers, short = false, className }: LayerDiagramP
                 onClick={() => setActiveIndex(index)}
                 onKeyDown={(event) => onKeyDown(event, index)}
                 className={cn(
-                  "group grid grid-cols-[auto_1fr_auto] items-center gap-4 border border-line bg-panel px-4 py-5 text-left transition-colors duration-300 hover:border-gold md:px-6",
+                  "layer-button group relative grid grid-cols-[auto_1fr_auto] items-center gap-4 border border-line bg-panel px-4 py-5 text-left transition-colors duration-300 hover:border-gold md:px-6",
                   isActive && "border-l-2 border-l-gold border-y-line border-r-line",
                 )}
               >
+                <span
+                  aria-hidden="true"
+                  className="layer-bar absolute left-0 top-0 h-full w-0.5 bg-gold"
+                />
                 <span className="font-mono text-[0.625rem] tracking-[0.16em] text-muted">
                   {layer.number}
                 </span>
@@ -78,7 +82,7 @@ export function LayerDiagram({ layers, short = false, className }: LayerDiagramP
       </div>
 
       <div className="lg:col-span-5">
-        <div className="border border-line p-6 md:p-8">
+        <div key={active.id} className="layer-panel border border-line p-6 md:p-8">
           <p className="font-mono text-[0.625rem] uppercase tracking-[0.2em] text-muted">
             Layer note
           </p>

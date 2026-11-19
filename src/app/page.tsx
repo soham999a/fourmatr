@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { HeroField } from "@/components/figures/HeroField";
 import { PlatformFigure } from "@/components/figures/PlatformFigure";
+import { PointerGlow } from "@/components/figures/PointerGlow";
 import { LayerDiagram } from "@/components/sections/LayerDiagram";
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Button } from "@/components/ui/Button";
@@ -45,6 +46,7 @@ export default function HomePage() {
         <div className="pointer-events-none absolute inset-0 text-bone/80">
           <HeroField variant="home" />
         </div>
+        <PointerGlow />
         <div className="container-shell relative grid min-h-[86vh] content-end gap-10 py-24 md:py-32">
           <Reveal>
             <Eyebrow tone="bone" className="block">
@@ -73,7 +75,7 @@ export default function HomePage() {
             <div className="lg:col-span-5 lg:flex lg:items-end lg:justify-end">
               <Reveal delay={200} className="flex items-end gap-8">
                 <FigureCounter value={HOME_HERO.counter} tone="dark" label="Section counter" />
-                <span className="font-mono text-[0.625rem] uppercase tracking-[0.2em] text-muted-light">
+                <span className="scroll-cue font-mono text-[0.625rem] uppercase tracking-[0.2em] text-muted-light">
                   {HOME_HERO.scroll} ↓
                 </span>
               </Reveal>
@@ -94,7 +96,7 @@ export default function HomePage() {
             ))}
           </p>
         </Reveal>
-        <Rule className="mt-16" />
+        <Rule className="hairline-draw mt-16" />
       </section>
 
       {/* 03 — Platforms */}
@@ -104,28 +106,34 @@ export default function HomePage() {
             eyebrow={HOME_PLATFORMS.eyebrow}
             titleLines={HOME_PLATFORMS.titleLines}
             index={HOME_PLATFORMS.index}
+            ghost="I–IV"
           />
         </Reveal>
         <div className="mt-14 grid gap-px border border-line bg-line/60 md:grid-cols-2">
           {PLATFORMS.map((platform, index) => (
             <Reveal key={platform.slug} delay={index * 70}>
-              <HairlineCard className="h-full bg-bone transition-colors hover:bg-tint/40">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <Eyebrow className="text-gold">{platform.roman}</Eyebrow>
-                    <p className="mt-4 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted">
-                      {platform.capability}
-                    </p>
-                  </div>
-                  <StatusBadge status={platform.status} />
+              <HairlineCard className="hover-card relative h-full bg-bone">
+                <div className="card-figure" aria-hidden="true">
+                  <PlatformFigure kind={platform.figure} />
                 </div>
-                <h3 className="mt-10 font-display text-4xl md:text-5xl">{platform.name}</h3>
-                <p className="lede mt-4 max-w-md text-sm md:text-base">{platform.oneLiner}</p>
-                <div className="mt-10 flex flex-wrap gap-6">
-                  <ArrowLink href={`/platforms/${platform.slug}`}>View platform</ArrowLink>
-                  <ArrowLink href={platform.liveUrl} external>
-                    Open platform
-                  </ArrowLink>
+                <div className="relative z-10">
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <Eyebrow className="text-gold">{platform.roman}</Eyebrow>
+                      <p className="mt-4 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted">
+                        {platform.capability}
+                      </p>
+                    </div>
+                    <StatusBadge status={platform.status} />
+                  </div>
+                  <h3 className="mt-10 font-display text-4xl md:text-5xl">{platform.name}</h3>
+                  <p className="lede mt-4 max-w-md text-sm md:text-base">{platform.oneLiner}</p>
+                  <div className="mt-10 flex flex-wrap gap-6">
+                    <ArrowLink href={`/platforms/${platform.slug}`}>View platform</ArrowLink>
+                    <ArrowLink href={platform.liveUrl} external>
+                      Open platform
+                    </ArrowLink>
+                  </div>
                 </div>
               </HairlineCard>
             </Reveal>
@@ -144,6 +152,7 @@ export default function HomePage() {
               eyebrow={HOME_ARCHITECTURE.eyebrow}
               titleLines={HOME_ARCHITECTURE.titleLines}
               index={HOME_ARCHITECTURE.figureLabel}
+              ghost="01"
               tone="dark"
               aside={
                 <div>
@@ -160,7 +169,7 @@ export default function HomePage() {
           </div>
           <div className="mt-16 grid gap-10 lg:grid-cols-12">
             <Reveal className="lg:col-span-7">
-              <div className="border border-line-dark p-4 md:p-8">
+              <div className="figure-glow border border-line-dark p-4 md:p-8">
                 <PlatformFigure kind="gravity" dark />
               </div>
             </Reveal>
@@ -170,7 +179,9 @@ export default function HomePage() {
               <p className="lede mt-4 text-muted-light">{COMPOUNDING.lead}</p>
               <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 font-mono text-[0.6875rem] tracking-[0.18em] text-bone/70">
                 {COMPOUNDING.platforms.map((name) => (
-                  <span key={name}>{name}</span>
+                  <span key={name} className="stagger-item">
+                    {name}
+                  </span>
                 ))}
               </div>
               <p className="mt-10 font-mono text-[0.625rem] uppercase tracking-[0.2em] text-gold">
@@ -224,6 +235,7 @@ export default function HomePage() {
             <SectionHeader
               eyebrow={HOME_RESEARCH.eyebrow}
               titleLines={HOME_RESEARCH.titleLines}
+              ghost="R"
               aside={
                 <div>
                   <p className="lede">{HOME_RESEARCH.body}</p>
@@ -267,6 +279,7 @@ export default function HomePage() {
             <SectionHeader
               eyebrow={HOME_ENGAGEMENT.eyebrow}
               titleLines={HOME_ENGAGEMENT.titleLines}
+              ghost="∞"
               tone="dark"
               aside={
                 <div>

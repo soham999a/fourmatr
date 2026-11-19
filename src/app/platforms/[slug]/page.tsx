@@ -84,7 +84,7 @@ export default async function PlatformPage({ params }: PageProps) {
             >
               {platform.capability}
             </p>
-            <Rule className="mt-8 max-w-16" accent />
+            <Rule className="hairline-draw mt-8 max-w-16" accent />
           </Reveal>
           <Reveal delay={80} className="lg:col-span-9">
             <p className="font-display text-3xl leading-[1.15] md:text-4xl lg:text-5xl">
@@ -99,7 +99,7 @@ export default async function PlatformPage({ params }: PageProps) {
         <div className="container-shell">
           <Reveal>
             <div
-              className={`border p-4 md:p-8 ${dark ? "border-line-dark bg-ink" : "border-line bg-panel"}`}
+              className={`figure-glow border p-4 md:p-8 ${dark ? "border-line-dark bg-ink" : "border-line bg-panel"}`}
             >
               <div className="flex items-center justify-between">
                 <Eyebrow tone={dark ? "bone" : "ink"}>Architecture diagram</Eyebrow>
@@ -127,6 +127,7 @@ export default async function PlatformPage({ params }: PageProps) {
             <SectionHeader
               eyebrow="Capability"
               titleLines={[platform.featuresHeading]}
+              ghost={platform.roman}
               tone={platform.tone}
               size="md"
             />

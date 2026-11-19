@@ -76,6 +76,10 @@ export function SiteHeader() {
                     active && "text-gold",
                   )}
                 >
+                  <span
+                    aria-hidden="true"
+                    className="active-marker absolute -left-2 top-1/2 h-1 w-1 -translate-y-1/2 bg-gold"
+                  />
                   {item.label}
                   {active ? (
                     <span
@@ -121,11 +125,12 @@ export function SiteHeader() {
             dark ? "bg-ink-home text-bone" : "bg-bone text-ink",
           )}
         >
-          {NAV_ITEMS.map((item) => (
+          {NAV_ITEMS.map((item, index) => (
             <Link
               key={item.href}
               href={item.href}
-              className="font-display text-4xl leading-none"
+              className="mobile-nav-item font-display text-4xl leading-none"
+              style={{ animationDelay: `${index * 70}ms` }}
               onClick={() => setOpen(false)}
             >
               {item.label}
@@ -135,14 +140,16 @@ export function SiteHeader() {
             href={SITE.parent.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono text-xs uppercase tracking-[0.16em]"
+            className="mobile-nav-item font-mono text-xs uppercase tracking-[0.16em]"
+            style={{ animationDelay: `${NAV_ITEMS.length * 70}ms` }}
           >
             Parent: {SITE.parent.label} ↗
           </a>
           <Link
             href="/contact"
             onClick={() => setOpen(false)}
-            className="mt-2 inline-flex w-fit border border-gold px-6 py-3 font-mono text-xs uppercase tracking-[0.14em] text-gold"
+            className="mobile-nav-item mt-2 inline-flex w-fit border border-gold px-6 py-3 font-mono text-xs uppercase tracking-[0.14em] text-gold"
+            style={{ animationDelay: `${(NAV_ITEMS.length + 1) * 70}ms` }}
           >
             Begin a Correspondence
           </Link>

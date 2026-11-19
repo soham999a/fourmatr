@@ -14,13 +14,18 @@ export function ArrowLink({ href, children, external, className }: ArrowLinkProp
     <Link
       href={href}
       className={cn(
-        "inline-flex items-center gap-2 border-b border-gold/60 pb-1 font-mono text-[0.6875rem] uppercase tracking-[0.16em] text-current transition-colors hover:border-gold hover:text-gold",
+        "group inline-flex items-center gap-2 border-b border-gold/60 pb-1 font-mono text-[0.6875rem] uppercase tracking-[0.16em] text-current transition-colors hover:border-gold hover:text-gold",
         className,
       )}
       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
     >
       {children}
-      <span aria-hidden="true">{external ? "↗" : "→"}</span>
+      <span
+        aria-hidden="true"
+        className="inline-block transition-transform duration-300 group-hover:translate-x-1"
+      >
+        {external ? "↗" : "→"}
+      </span>
       {external ? <span className="sr-only">(opens in a new tab)</span> : null}
     </Link>
   );
