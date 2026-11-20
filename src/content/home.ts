@@ -3,7 +3,7 @@ import { PUBLICATIONS } from "./research";
 import { SITE } from "./site";
 
 export const HOME_HERO = {
-  eyebrow: "Independent applied intelligence · Kolkata, India",
+  eyebrow: "NEXT GENERATION APPLIED INTELLIGENCE FIRM",
   titleLines: ["Four intelligences.", "One architecture."],
   lead: "Decision, supply chain, analytics and operations — built on a shared intelligence architecture.",
   primary: { label: "Explore the architecture", href: "/architecture" },
