@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { HeroField } from "@/components/figures/HeroField";
+import { HeroImageRotation } from "@/components/figures/HeroImageRotation";
 import { SharedSystemFigure } from "@/components/figures/SharedSystemFigure";
 import { LazyOrbitalField } from "@/components/figures/LazyOrbitalField";
-import { LazyShaderField as ShaderField } from "@/components/webgl/LazyShaderField";
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -35,9 +34,7 @@ export default function HomePage() {
     <>
       {/* 01 — Hero */}
       <section className="tone-dark-home relative overflow-hidden" id="top">
-        <div className="pointer-events-none absolute inset-0 text-bone/80">
-          <ShaderField variant="hero" dark fallback={<HeroField variant="home" />} />
-        </div>
+        <HeroImageRotation />
         <div className="container-shell relative grid min-h-[86vh] content-end gap-10 py-24 md:py-32">
           <Reveal immediate>
             <Eyebrow tone="bone" className="block">
@@ -79,10 +76,7 @@ export default function HomePage() {
         <LazyOrbitalField />
         <div className="container-shell relative grid gap-12 py-16 md:py-24 lg:grid-cols-12 lg:items-center">
           <Reveal className="lg:col-span-5">
-            <Eyebrow tone="gold" className="block">
-              {HOME_SYSTEM.index} · {HOME_SYSTEM.eyebrow}
-            </Eyebrow>
-            <h2 className="display-md mt-8 text-bone">
+            <h2 className="display-md text-bone">
               {HOME_SYSTEM.titleLines.map((line) => (
                 <span key={line} className="block">
                   {line}
@@ -98,23 +92,19 @@ export default function HomePage() {
           </Reveal>
           <Reveal delay={100} className="relative z-10 lg:col-span-7">
             <div className="border border-line-dark bg-ink/30">
-              <div className="flex items-center justify-between gap-4 border-b border-line-dark px-5 py-3 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted-light">
-                <span>{HOME_SYSTEM.figureLabel}</span>
-                <span>{HOME_SYSTEM.figureCaption}</span>
-              </div>
               <div className="px-3 py-4 md:px-8 md:py-6">
                 <SharedSystemFigure />
               </div>
-              <div className="flex flex-wrap items-center justify-between gap-2 border-t border-line-dark px-5 py-3 font-mono text-[0.625rem] uppercase tracking-[0.14em] text-bone/65">
-                <span>Distinct domains.</span>
-                <span>Common foundations.</span>
+              <div className="border-t border-line-dark px-5 py-4 font-mono text-[0.625rem] uppercase tracking-[0.14em] text-bone/65">
+                <span className="block">Distinct domains.</span>
+                <span className="mt-1 block">Common foundations.</span>
               </div>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* 01b — Principle */}
+      {/* 01c — Principle */}
       <section className="container-shell py-20 md:py-28" id="position">
         <Reveal>
           <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line pb-6 font-mono text-[0.625rem] uppercase tracking-[0.18em]">
@@ -123,16 +113,16 @@ export default function HomePage() {
           </div>
         </Reveal>
 
-        <div className="grid gap-12 py-12 lg:grid-cols-12">
-          <Reveal className="lg:col-span-7">
-            <h2 className="display-lg max-w-3xl">
+        <div className="py-12">
+          <Reveal>
+            <h2 className="display-lg max-w-4xl text-ink">
               <span className="block">{HOME_POSITION.lines[0]}</span>
-              <span className="block font-serif italic">{HOME_POSITION.lines[1]}</span>
-              <span className="mt-6 block font-body text-2xl font-normal leading-snug tracking-normal text-muted md:text-3xl">
-                {HOME_POSITION.lines[2]}
-              </span>
+              <span className="block">{HOME_POSITION.lines[1]}</span>
             </h2>
-            <p className="mt-8 max-w-2xl text-sm leading-[1.8] text-muted">{HOME_POSITION.body}</p>
+            <p className="mt-6 max-w-3xl font-display text-2xl leading-snug text-muted md:text-3xl">
+              {HOME_POSITION.lines[2]}
+            </p>
+            <p className="mt-6 max-w-2xl text-sm leading-[1.8] text-muted">{HOME_POSITION.body}</p>
             <div className="mt-8">
               <Link
                 prefetch={false}
@@ -147,14 +137,14 @@ export default function HomePage() {
             </div>
           </Reveal>
 
-          <Reveal delay={100} className="lg:col-span-5">
-            <div className="grid gap-px border border-line bg-line/60 sm:grid-cols-2">
+          <Reveal delay={80}>
+            <div className="mt-14 grid gap-px border border-line bg-line/60">
               {HOME_POSITION.principles.map((principle) => (
-                <div key={principle.number} className="bg-bone p-5">
+                <div key={principle.number} className="flex items-center gap-6 bg-bone px-5 py-5 md:px-7">
                   <span className="font-mono text-[0.625rem] tracking-[0.18em] text-gold">
                     {principle.number}
                   </span>
-                  <p className="mt-6 font-display text-xl leading-snug">{principle.title}</p>
+                  <p className="font-display text-2xl leading-snug md:text-3xl">{principle.title}</p>
                 </div>
               ))}
             </div>
@@ -186,15 +176,15 @@ export default function HomePage() {
             </div>
           </Reveal>
 
-          <div className="grid gap-px border border-line bg-line/60 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-px border border-line bg-line/60 md:grid-cols-2">
             {HOME_PLATFORMS.cards.map((card, index) => (
               <Reveal key={card.slug} className="h-full" delay={index * 70}>
-                <article className="group relative flex h-full min-h-[22.8rem] flex-col overflow-hidden bg-ink p-5 text-bone">
+                <article className="group relative flex h-full min-h-[26rem] flex-col overflow-hidden bg-ink p-5 text-bone md:p-7">
                   <Image
                     src={card.image}
                     alt=""
                     fill
-                    sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
+                    sizes="(min-width: 768px) 50vw, 100vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                     style={{ opacity: card.imageOpacity }}
                   />

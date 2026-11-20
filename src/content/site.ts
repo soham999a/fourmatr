@@ -8,7 +8,6 @@ export const SITE = {
   motto: "Cohered by Design.",
   description:
     "Four intelligences. One architecture. Applied intelligence for enterprise, built in Kolkata, India.",
-  microHeader: "APPLIED INTELLIGENCE / KOLKATA-2026",
   contact: {
     email: "system@matrka.net",
     phone: "+91 98756 63417",

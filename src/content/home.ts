@@ -12,12 +12,8 @@ export const HOME_HERO = {
 };
 
 export const HOME_SYSTEM = {
-  index: "01 / 04",
-  eyebrow: "INTELLIGENCE, CONNECTED",
   titleLines: ["Distinct domains.", "Common foundations."],
   body: "MATRKA's connected intelligence architecture. Four specialized domains connect through a shared reasoning core and knowledge foundation.",
-  figureLabel: "FIG. 01",
-  figureCaption: "SHARED SYSTEM / 2026",
 };
 
 export const HOME_POSITION = {
@@ -61,15 +57,17 @@ export const HOME_PLATFORMS = {
 
 export const HOME_RESEARCH = {
   index: "05 — RESEARCH",
-  eyebrow: "FOUNDATIONS & PUBLICATIONS",
+  eyebrow: "PUBLICATIONS & FRAMEWORKS",
   titleLines: ["Grounded in", "original research."],
   body: "Explore MATRKA's current Zenodo records on supply-chain resilience and adaptive computational intelligence.",
-  publications: PUBLICATIONS.slice(0, 3),
+  publications: PUBLICATIONS.filter((publication) =>
+    ["arps-preprint", "gravity-framework"].includes(publication.id),
+  ),
   cta: { label: "Full research index", href: "/research" },
 };
 
 export const HOME_COLLABORATION = {
-  index: "06 — COLLABORATION",
+  index: "CONTACT",
   eyebrow: "SELECTIVE BY DESIGN",
   titleLines: ["FOR THE SYSTEMS", "THAT MATTER"],
   lead: "The door is narrow on purpose.",

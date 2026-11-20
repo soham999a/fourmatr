@@ -34,28 +34,6 @@ export function SiteHeader() {
       )}
     >
       <div className="container-shell">
-        <div className="hidden items-center justify-between border-b border-current/15 py-3 lg:flex">
-          <span className="font-mono text-[0.625rem] uppercase tracking-[0.2em] opacity-70">
-            {SITE.microHeader}
-          </span>
-          <div className="flex items-center gap-8">
-            <a
-              href={SITE.parent.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-mono text-[0.6875rem] uppercase tracking-[0.14em] transition-colors hover:text-gold"
-            >
-              Parent: {SITE.parent.label} <span aria-hidden="true">↗</span>
-            </a>
-            <Link prefetch={false}
-              href="/contact"
-              className="border border-gold px-5 py-2 font-mono text-[0.625rem] uppercase tracking-[0.14em] text-gold transition-colors hover:bg-gold hover:text-ink"
-            >
-              Begin a Correspondence
-            </Link>
-          </div>
-        </div>
-
         <div className="flex h-[76px] items-center justify-between gap-8">
           <Link
             prefetch={false}
@@ -63,7 +41,7 @@ export function SiteHeader() {
             className="group flex items-center gap-3"
             aria-label="Matrka Applied Systems — home"
           >
-            <BrandMark size={34} priority />
+            <BrandMark size={34} preload />
             <span className="font-display text-2xl tracking-[-0.03em]">MATRKA</span>
             <span className="hidden font-mono text-[0.625rem] uppercase tracking-[0.18em] opacity-70 sm:inline">
               Applied Systems
@@ -97,6 +75,17 @@ export function SiteHeader() {
                 </Link>
               );
             })}
+            <Link
+              prefetch={false}
+              href="/contact"
+              aria-current={pathname === "/contact" ? "page" : undefined}
+              className={cn(
+                "border border-gold px-4 py-2 font-mono text-[0.625rem] uppercase tracking-[0.14em] text-gold transition-colors hover:bg-gold hover:text-ink",
+                pathname === "/contact" && "bg-gold text-ink",
+              )}
+            >
+              Begin a Correspondence
+            </Link>
           </nav>
 
           <button
