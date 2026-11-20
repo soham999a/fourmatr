@@ -25,7 +25,6 @@
   --ref-line: #d4d2c9;
   --ref-muted: #777970;
   --ref-gold: #b08b52;
-  --ref-max: 1440px;
 
   --container: 1140px;
   --gutter: 56px;
@@ -1016,9 +1015,15 @@ button:hover > .eyebrow {
 
 .reference-shell {
   width: 100%;
-  max-width: var(--ref-max);
+  max-width: calc(var(--container) + var(--gutter) * 2);
   margin-inline: auto;
-  padding-inline: 7.1%;
+  padding-inline: 28px;
+}
+
+@media (min-width: 1024px) {
+  .reference-shell {
+    padding-inline: var(--gutter);
+  }
 }
 
 .reference-contact {
@@ -1246,12 +1251,6 @@ button:hover > .eyebrow {
 
 .reference-footer-bottom a:hover {
   color: var(--ref-ink);
-}
-
-@media (max-width: 1000px) {
-  .reference-shell {
-    padding-inline: 5%;
-  }
 }
 
 @media (max-width: 700px) {
