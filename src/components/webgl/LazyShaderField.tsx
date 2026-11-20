@@ -72,7 +72,8 @@ export function LazyShaderField({
       {fallback && !hideFallback ? (
         <div
           className={cn(
-            "absolute inset-0 transition-opacity duration-700",
+            "absolute inset-0 transition-opacity duration-300",
+            variant === "hero" && "hero-field-fallback",
             canvasReady && "opacity-0",
           )}
         >

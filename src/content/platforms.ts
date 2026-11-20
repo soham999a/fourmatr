@@ -1,5 +1,11 @@
 export type PlatformStatus = "research-mvp" | "in-development" | "prototype" | "live";
 
+/** Public-facing labels used only by the home platform grid. */
+export type HomePlatformStatus =
+  | "MVP · SAMPLE VERSION"
+  | "MVP STAGE"
+  | "STATUS NOT STATED";
+
 export const STATUS_LABEL: Record<PlatformStatus, string> = {
   "research-mvp": "Research + MVP",
   "in-development": "In Development",
@@ -23,6 +29,13 @@ export interface Platform {
   name: string;
   oneLiner: string;
   status: PlatformStatus;
+  homeDomain: string;
+  homeStatus: HomePlatformStatus;
+  homeType: string;
+  homeBody: string;
+  homeCtaLabel: string;
+  homeImage: string;
+  homeImageOpacity: number;
   liveUrl: string;
   tone: "light" | "dark";
   heroLead: string;
@@ -53,6 +66,14 @@ export const PLATFORMS: Platform[] = [
     name: "ARPS",
     oneLiner: "Autonomous procurement and resilient supply chain decisions",
     status: "research-mvp",
+    homeDomain: "I / SUPPLY CHAIN",
+    homeStatus: "MVP · SAMPLE VERSION",
+    homeType: "Autonomous Resilient Procurement System",
+    homeBody:
+      "Autonomous procurement and resilient supply-chain decisions. Its public page presents a 2026 conceptual sample using synthetic data.",
+    homeCtaLabel: "Explore ARPS",
+    homeImage: "/platforms/arps-supply-chain.jpg",
+    homeImageOpacity: 0.78,
     liveUrl: "https://arps.matrka.net/",
     tone: "light",
     heroLead: "Resilient decisions across procurement, logistics and risk.",
@@ -109,6 +130,14 @@ export const PLATFORMS: Platform[] = [
     name: "Gravity",
     oneLiner: "Multi-agent decision intelligence that reconfigures its own reasoning",
     status: "in-development",
+    homeDomain: "II / ADAPTIVE COMPUTATION",
+    homeStatus: "MVP STAGE",
+    homeType: "Computational Adaptive Intelligence",
+    homeBody:
+      "Multi-agent decision intelligence that adapts its reasoning strategy to the problem.",
+    homeCtaLabel: "Explore Gravity",
+    homeImage: "/platforms/gravity-computational.jpg",
+    homeImageOpacity: 0.82,
     liveUrl: "https://gravity.matrka.net/",
     tone: "dark",
     heroLead: "Intelligence that chooses its own way of thinking.",
@@ -157,6 +186,14 @@ export const PLATFORMS: Platform[] = [
     name: "Datum",
     oneLiner: "Natural language analytics and self-service BI",
     status: "prototype",
+    homeDomain: "III / ANALYTICS",
+    homeStatus: "STATUS NOT STATED",
+    homeType: "Analytics Intelligence",
+    homeBody:
+      "Natural-language analytics and self-service business intelligence for data-to-decision work.",
+    homeCtaLabel: "Explore Datum",
+    homeImage: "/platforms/datum-analytics.jpg",
+    homeImageOpacity: 0.76,
     liveUrl: "https://datum.matrka.net/",
     tone: "light",
     heroLead: "Ask your data. Understand the answer.",
@@ -208,6 +245,14 @@ export const PLATFORMS: Platform[] = [
     name: "Humming",
     oneLiner: "An AI copilot for executive decisions and continuous monitoring",
     status: "research-mvp",
+    homeDomain: "IV / OPERATIONS",
+    homeStatus: "STATUS NOT STATED",
+    homeType: "Operational Intelligence · linked page: NEXORA AI",
+    homeBody:
+      "The linked public page currently presents NEXORA AI by MATRIX for retail, FMCG and distribution operations.",
+    homeCtaLabel: "Explore linked site",
+    homeImage: "/platforms/humming-operations.jpg",
+    homeImageOpacity: 0.78,
     liveUrl: "https://humming.matrka.net/",
     tone: "light",
     heroLead: "An AI copilot for the people who run the business.",

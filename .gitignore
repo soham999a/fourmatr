@@ -10,3 +10,10 @@ npm-debug.log*
 pnpm-debug.log*
 docs/qa/*.json
 ui screens/
+
+# Source image exports from the senior; optimized copies live in public/.
+/Cinematic Business Analytics Dashboard.png
+/Global Port Logistics Network.png
+/Strategic Operations Command Center.png
+/Thoughtful Engineer Analyzing a Network Display.png
+/WhatsApp Image 2026-11-20 at 12.16.01.jpeg

@@ -1,75 +1,86 @@
+import { PLATFORMS } from "./platforms";
+import { PUBLICATIONS } from "./research";
+
 export const HOME_HERO = {
-  eyebrow: "Applied intelligence for enterprise",
+  eyebrow: "Independent applied intelligence · Kolkata, India",
   titleLines: ["Four intelligences.", "One architecture."],
-  lead: "Decision, supply chain, analytics and operations, built on one trusted reasoning layer.",
-  primary: { label: "Explore the platforms", href: "/platforms" },
-  secondary: { label: "Read the research", href: "/research" },
+  lead: "Decision, supply chain, analytics and operations — built on a shared intelligence architecture.",
+  primary: { label: "Explore the architecture", href: "/architecture" },
+  secondary: { label: "Meet the platforms", href: "/platforms" },
   counter: "01 : OF : 04",
   scroll: "Descend",
 };
 
+export const HOME_SYSTEM = {
+  index: "01 / 04",
+  eyebrow: "INTELLIGENCE, CONNECTED",
+  titleLines: ["Distinct domains.", "Common foundations."],
+  body: "MATRKA's connected intelligence architecture. Four specialized domains connect through a shared reasoning core and knowledge foundation.",
+  figureLabel: "FIG. 01",
+  figureCaption: "SHARED SYSTEM / 2026",
+};
+
 export const HOME_POSITION = {
-  eyebrow: "A position from Matrka Applied Systems",
+  index: "01 — PRINCIPLE",
+  eyebrow: "THE MATRKA POINT OF VIEW",
   lines: [
-    "We do not build disconnected software. We build the",
-    "conditions under which intelligence can be trusted.",
+    "We do not build",
+    "disconnected software.",
+    "We build the conditions under which intelligence can be trusted.",
+  ],
+  body: "Architecture before applications. Research beneath reasoning. Context carried across decisions. MATRKA develops connected systems where each domain has its own purpose—and a place within a larger whole.",
+  cta: { label: "See how the system connects", href: "/architecture" },
+  principles: [
+    { number: "01", title: "Research as foundation" },
+    { number: "02", title: "Context before answer" },
+    { number: "03", title: "Architecture over isolation" },
+    { number: "04", title: "Impact through application" },
   ],
 };
 
 export const HOME_PLATFORMS = {
-  eyebrow: "The Platforms",
-  titleLines: ["Four intelligences,", "held by a single hand."],
-  index: "I - IV",
-};
-
-export const HOME_ARCHITECTURE = {
-  eyebrow: "The Architecture",
-  titleLines: ["One reasoning investment", "compounds everywhere."],
-  figureLabel: "Figure 01",
-};
-
-export const HOME_LIVE = {
-  eyebrow: "Live now",
-  title: "Four points of entry",
+  index: "02 — PLATFORMS",
+  eyebrow: "FOUR EXPRESSIONS / ONE SYSTEM",
+  titleLines: ["Intelligence,", "in its domains."],
+  body: "Purpose-built applications grounded in a shared architectural direction. Each is a distinct expression—not a disconnected point solution.",
+  footnote:
+    "The public Humming URL currently presents a different product name. Current development stages for Datum and Humming are not stated.",
+  cards: PLATFORMS.map((platform) => ({
+    slug: platform.slug,
+    domain: platform.homeDomain,
+    status: platform.homeStatus,
+    name: platform.name,
+    type: platform.homeType,
+    body: platform.homeBody,
+    ctaLabel: platform.homeCtaLabel,
+    image: platform.homeImage,
+    imageOpacity: platform.homeImageOpacity,
+    href: platform.liveUrl,
+  })),
 };
 
 export const HOME_RESEARCH = {
-  eyebrow: "Research Foundation",
+  index: "05 — RESEARCH",
+  eyebrow: "FOUNDATIONS & PUBLICATIONS",
   titleLines: ["Grounded in", "original research."],
-  body: "CES-QN is a conservation-law-grounded framework for AI that reasons with physical and causal integrity. Our work is accompanied by published whitepapers on Zenodo.",
-  links: [
-    { label: "Whitepapers", href: "/research#publications" },
-    { label: "Frameworks", href: "/research#frameworks" },
-    { label: "Patent publication", href: "/research#publications" },
-  ],
+  body: "Explore MATRKA's current Zenodo records on supply-chain resilience and adaptive computational intelligence.",
+  publications: PUBLICATIONS.slice(0, 3),
+  cta: { label: "Full research index", href: "/research" },
 };
 
-export const HOME_AUDIENCES = {
-  eyebrow: "Who we work with",
-  title: "A considered network",
-  items: [
-    {
-      title: "Enterprises",
-      body: "Organisations facing decisions that do not fit a dashboard.",
-    },
-    {
-      title: "Governments and Institutions",
-      body: "Public systems where trust and continuity matter.",
-    },
-    {
-      title: "Universities and Research Labs",
-      body: "Partners in the long work of making intelligence legible.",
-    },
-    {
-      title: "Investors and Grant Funders",
-      body: "Stewards of patient capital and difficult questions.",
-    },
-  ],
-};
-
-export const HOME_ENGAGEMENT = {
-  eyebrow: "Engagement",
-  titleLines: ["The door is narrow", "on purpose."],
-  body: "A small number of engagements each year.",
+export const HOME_COLLABORATION = {
+  index: "06 — COLLABORATION",
+  eyebrow: "SELECTIVE BY DESIGN",
+  titleLines: ["FOR THE SYSTEMS", "THAT MATTER"],
+  lead: "The door is narrow on purpose.",
+  body: "We welcome thoughtful conversations with enterprises, institutions, researchers, funders and technology partners working on consequential systems.",
+  note: "A small number of carefully considered engagements each year.",
   cta: { label: "Begin a correspondence", href: "/contact" },
+  audiences: [
+    "ENTERPRISES",
+    "INSTITUTIONS",
+    "RESEARCH LABS",
+    "INVESTORS & FUNDERS",
+    "TECHNOLOGY PARTNERS",
+  ],
 };

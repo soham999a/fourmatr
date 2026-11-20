@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { NAV_ITEMS, SITE } from "@/content/site";
 import { cn } from "@/lib/cn";
+import { BrandMark } from "@/components/ui/BrandMark";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -56,7 +57,13 @@ export function SiteHeader() {
         </div>
 
         <div className="flex h-[76px] items-center justify-between gap-8">
-          <Link prefetch={false} href="/" className="group flex items-baseline gap-2" aria-label="Matrka Applied Systems — home">
+          <Link
+            prefetch={false}
+            href="/"
+            className="group flex items-center gap-3"
+            aria-label="Matrka Applied Systems — home"
+          >
+            <BrandMark size={34} priority />
             <span className="font-display text-2xl tracking-[-0.03em]">MATRKA</span>
             <span className="hidden font-mono text-[0.625rem] uppercase tracking-[0.18em] opacity-70 sm:inline">
               Applied Systems

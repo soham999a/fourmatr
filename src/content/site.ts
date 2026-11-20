@@ -1,3 +1,5 @@
+import { PLATFORMS } from "./platforms";
+
 export const SITE = {
   name: "Matrka Applied Systems",
   shortName: "MATRKA · APPLIED SYSTEMS",
@@ -14,7 +16,7 @@ export const SITE = {
     location: "Kolkata, India",
   },
   parent: {
-    label: "matrka.net",
+    label: "MATRKA.NET",
     href: "https://www.matrka.net",
   },
   copyright: "© 2026 Matrka · Cohered by design",
@@ -40,28 +42,27 @@ export const LEGAL_LINKS = [
 
 export const FOOTER_COLUMNS = [
   {
-    heading: "Platforms",
+    heading: "Explore",
     links: [
-      { label: "ARPS", href: "/platforms/arps" },
-      { label: "Gravity", href: "/platforms/gravity" },
-      { label: "Datum", href: "/platforms/datum" },
-      { label: "Humming", href: "/platforms/humming" },
+      { label: "Platforms", href: "/platforms" },
+      { label: "Architecture", href: "/architecture" },
+      { label: "Research", href: "/research" },
+      { label: "Engage", href: "/engage" },
     ],
   },
   {
-    heading: "Research",
-    links: [
-      { label: "Architecture", href: "/architecture" },
-      { label: "Whitepapers", href: "/research#publications" },
-      { label: "Frameworks", href: "/research#frameworks" },
-    ],
+    heading: "Platforms",
+    links: PLATFORMS.map((platform) => ({
+      label: platform.name,
+      href: platform.liveUrl,
+      external: true,
+    })),
   },
   {
     heading: "Company",
     links: [
-      { label: SITE.contact.email, href: `mailto:${SITE.contact.email}` },
-      { label: SITE.contact.location, href: "/contact" },
+      { label: "Correspondence", href: "/contact" },
       { label: SITE.parent.label, href: SITE.parent.href, external: true },
     ],
   },
-] as const;
+];

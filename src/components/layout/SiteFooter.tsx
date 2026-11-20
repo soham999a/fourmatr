@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { FOOTER_COLUMNS, LEGAL_LINKS, SITE } from "@/content/site";
+import { BrandMark } from "@/components/ui/BrandMark";
 
 export function SiteFooter() {
   return (
@@ -7,15 +8,27 @@ export function SiteFooter() {
       <div className="container-shell py-20">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <div className="font-display text-3xl leading-none tracking-[-0.03em]">
-              MATRKA
-              <span className="ml-2 font-mono text-[0.625rem] uppercase tracking-[0.18em]">
-                Applied Systems
-              </span>
+            <div className="flex items-center gap-3">
+              <BrandMark size={40} />
+              <div className="font-display text-3xl leading-none tracking-[-0.03em]">
+                MATRKA
+                <span className="ml-2 font-mono text-[0.625rem] uppercase tracking-[0.18em]">
+                  Applied Systems
+                </span>
+              </div>
             </div>
             <p className="mt-6 max-w-xs text-sm leading-relaxed text-muted">
               Applied intelligence for enterprise. Built in Kolkata, India.
             </p>
+            <a
+              href={SITE.parent.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 inline-flex items-center gap-2 border-b border-gold/60 pb-1 font-mono text-[0.6875rem] uppercase tracking-[0.16em] text-ink transition-colors hover:text-gold"
+            >
+              {SITE.parent.label} <span aria-hidden="true">↗</span>
+              <span className="sr-only">(opens in a new tab)</span>
+            </a>
           </div>
 
           {FOOTER_COLUMNS.map((column) => (

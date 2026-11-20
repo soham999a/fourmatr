@@ -232,7 +232,7 @@ export function ShaderField({
       {fallback ? <div className="absolute inset-0">{fallback}</div> : null}
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 h-full w-full opacity-0 transition-opacity duration-700 data-[ready=true]:opacity-100"
+        className="absolute inset-0 h-full w-full opacity-0 transition-opacity duration-300 data-[ready=true]:opacity-100"
       />
     </div>
   );

@@ -45,8 +45,33 @@ export interface Publication {
 
 export const PUBLICATIONS: Publication[] = [
   {
-    id: "zenodo",
-    kind: "Publication",
+    id: "arps-preprint",
+    kind: "ARPS / PREPRINT",
+    title:
+      "An Adaptive Evidence-to-Action Intelligence Architecture for Supply Chain Resilience Under Extraordinary Disruptions",
+    meta: "Zenodo · v1.0",
+    href: "https://zenodo.org/records/23287388",
+    external: true,
+  },
+  {
+    id: "gravity-framework",
+    kind: "GRAVITY / FRAMEWORK",
+    title: "GRAVITY: A Problem-State-Driven Adaptive Computational Intelligence Fabric",
+    meta: "Zenodo",
+    href: "https://zenodo.org/records/23302918",
+    external: true,
+  },
+  {
+    id: "ces-qn",
+    kind: "CES-QN",
+    title:
+      "The Applied Systems page describes CES-QN as a conservation-law-grounded framework for AI reasoning with physical and causal integrity.",
+    meta: "Framework",
+    href: "/research#frameworks",
+  },
+  {
+    id: "ces-qn-zenodo",
+    kind: "CES-QN / ZENODO",
     title: "CES-QN framework — Zenodo record",
     meta: "Zenodo",
     href: "https://zenodo.org/records/20364601",

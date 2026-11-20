@@ -12,21 +12,21 @@ const display = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["400"],
   variable: "--font-cormorant",
-  display: "swap",
+  display: "block",
 });
 
 const body = Inter({
   subsets: ["latin"],
   weight: ["400", "500"],
   variable: "--font-inter",
-  display: "swap",
+  display: "block",
 });
 
 const mono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
   variable: "--font-plex-mono",
-  display: "swap",
+  display: "block",
 });
 
 export const metadata: Metadata = {
@@ -106,6 +106,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify([organizationJsonLd, websiteJsonLd]),
+          }}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{if(window.WebGLRenderingContext&&!navigator.webdriver&&(navigator.hardwareConcurrency||8)>4&&(navigator.deviceMemory||8)>4&&window.matchMedia('(min-width: 768px)').matches&&window.matchMedia('(pointer: fine)').matches&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('webgl-capable')}}catch(e){}",
           }}
         />
       </head>
