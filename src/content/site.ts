@@ -5,7 +5,7 @@ export const SITE = {
   shortName: "MATRKA · APPLIED SYSTEMS",
   origin: "https://appliedsystems.matrka.net",
   tagline: "The invisible architecture behind the future.",
-  motto: "Cohered by Design.",
+  motto: "INTELLIGENCE. ARCHITECTURE. IMPACT.",
   description:
     "Four intelligences. One architecture. Applied intelligence for enterprise, built in Kolkata, India.",
   contact: {
@@ -18,7 +18,7 @@ export const SITE = {
     label: "MATRKA.NET",
     href: "https://www.matrka.net",
   },
-  copyright: "© 2026 Matrka · Cohered by design",
+  copyright: "© 2026 MATRKA APPLIED SYSTEMS",
 } as const;
 
 export const NAV_ITEMS = [
@@ -41,16 +41,15 @@ export const LEGAL_LINKS = [
 
 export const FOOTER_COLUMNS = [
   {
-    heading: "Explore",
+    heading: "EXPLORE",
     links: [
       { label: "Platforms", href: "/platforms" },
-      { label: "Architecture", href: "/architecture" },
+      { label: "Our approach", href: "/architecture" },
       { label: "Research", href: "/research" },
-      { label: "Engage", href: "/engage" },
     ],
   },
   {
-    heading: "Platforms",
+    heading: "PLATFORMS",
     links: PLATFORMS.map((platform) => ({
       label: platform.name,
       href: platform.liveUrl,
@@ -58,10 +57,10 @@ export const FOOTER_COLUMNS = [
     })),
   },
   {
-    heading: "Company",
+    heading: "ABOUT",
     links: [
-      { label: "Correspondence", href: "/contact" },
-      { label: SITE.parent.label, href: SITE.parent.href, external: true },
+      { label: "Contact", href: "/#company" },
+      { label: "MATRKA", href: SITE.parent.href, external: true },
     ],
   },
 ];

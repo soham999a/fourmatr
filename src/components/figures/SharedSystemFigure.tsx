@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { PLATFORMS } from "@/content/platforms";
+import { SITE } from "@/content/site";
 
 /** Four specialized domains arranged as a clean quadrant around one shared core. */
 export function SharedSystemFigure() {
@@ -8,10 +9,16 @@ export function SharedSystemFigure() {
       <span aria-hidden="true" className="system-quadrant__axis system-quadrant__axis--x" />
       <span aria-hidden="true" className="system-quadrant__axis system-quadrant__axis--y" />
 
-      <div className="system-quadrant__core" aria-hidden="true">
+      <a
+        href={SITE.parent.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="MATRKA.NET — parent site (opens in a new tab)"
+        className="system-quadrant__core"
+      >
         <Image src="/brand/matrka-emblem.png" alt="" width={46} height={46} />
         <span>SHARED ARCHITECTURE</span>
-      </div>
+      </a>
 
       {PLATFORMS.map((platform) => (
         <a

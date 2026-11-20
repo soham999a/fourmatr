@@ -267,34 +267,49 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 06 — Collaboration */}
-      <section className="container-shell py-20 md:py-28" id="collaboration">
-        <Reveal>
-          <SectionHeader
-            eyebrow={HOME_COLLABORATION.index}
-            index={HOME_COLLABORATION.eyebrow}
-            titleLines={HOME_COLLABORATION.titleLines}
-            size="md"
-            ghost="06"
-            aside={
-              <div>
-                <p className="font-display text-3xl leading-tight text-gold md:text-4xl">
-                  {HOME_COLLABORATION.lead}
-                </p>
-                <p className="lede mt-6">{HOME_COLLABORATION.body}</p>
-                <p className="mt-5 font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted">
-                  {HOME_COLLABORATION.note}
-                </p>
-                <div className="mt-8">
-                  <MagneticWrap>
-                    <Button href={HOME_COLLABORATION.cta.href} variant="primary">
-                      {HOME_COLLABORATION.cta.label}
-                    </Button>
-                  </MagneticWrap>
-                </div>
-              </div>
-            }
-          />
+      {/* 06 — Contact */}
+      <section className="reference-contact" id="company">
+        <Reveal immediate>
+          <div className="reference-shell reference-section-kicker">
+            <span>{HOME_COLLABORATION.index}</span>
+            <span>{HOME_COLLABORATION.eyebrow}</span>
+          </div>
+        </Reveal>
+
+        <Reveal immediate>
+          <div className="reference-shell reference-collab-layout">
+            <div>
+              <p className="reference-eyebrow">{HOME_COLLABORATION.lead}</p>
+              <h2 className="reference-collab-title">
+                <span>{HOME_COLLABORATION.titleLines[0]}</span>
+                <em>{HOME_COLLABORATION.titleLines[1]}</em>
+              </h2>
+            </div>
+            <div className="reference-collab-copy">
+              <p>{HOME_COLLABORATION.body}</p>
+              <p className="reference-small-copy">{HOME_COLLABORATION.note}</p>
+              <a
+                href={HOME_COLLABORATION.cta.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="reference-light-button"
+              >
+                {HOME_COLLABORATION.cta.label}
+                <span aria-hidden="true" className="reference-button-arrow">
+                  ↗
+                </span>
+                <span className="sr-only">(opens in a new tab)</span>
+              </a>
+            </div>
+          </div>
+        </Reveal>
+
+        <Reveal immediate>
+          <div className="reference-shell reference-audience-strip">
+            {HOME_COLLABORATION.audiences.map((audience) => (
+              <span key={audience}>{audience}</span>
+            ))}
+          </div>
         </Reveal>
       </section>
     </>

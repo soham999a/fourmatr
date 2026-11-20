@@ -1,5 +1,6 @@
 import { PLATFORMS } from "./platforms";
 import { PUBLICATIONS } from "./research";
+import { SITE } from "./site";
 
 export const HOME_HERO = {
   eyebrow: "Independent applied intelligence · Kolkata, India",
@@ -67,11 +68,18 @@ export const HOME_RESEARCH = {
 };
 
 export const HOME_COLLABORATION = {
-  index: "CONTACT",
+  index: "06 — CONTACT",
   eyebrow: "SELECTIVE BY DESIGN",
-  titleLines: ["FOR THE SYSTEMS", "THAT MATTER"],
-  lead: "The door is narrow on purpose.",
+  titleLines: ["Work on what", "matters."],
+  lead: "FOR THE SYSTEMS THAT MATTER",
   body: "We welcome thoughtful conversations with enterprises, institutions, researchers, funders and technology partners working on consequential systems.",
   note: "A small number of carefully considered engagements each year.",
-  cta: { label: "Begin a correspondence", href: "/contact" },
+  cta: { label: "Contact MATRKA", href: SITE.parent.href },
+  audiences: [
+    "ENTERPRISES",
+    "INSTITUTIONS",
+    "RESEARCH LABS",
+    "INVESTORS & FUNDERS",
+    "TECHNOLOGY PARTNERS",
+  ],
 };
