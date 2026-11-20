@@ -19,11 +19,7 @@ export function SiteFooter() {
               <small>APPLIED SYSTEMS</small>
             </span>
           </Link>
-          <p>
-            Applied intelligence for enterprise.
-            <br />
-            Built in Kolkata, India.
-          </p>
+          <p>Built in India.</p>
           <a
             href={SITE.parent.href}
             target="_blank"
