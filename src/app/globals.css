@@ -1054,7 +1054,7 @@ button:hover > .eyebrow {
   grid-template-columns: 1.1fr 0.8fr;
   gap: 12%;
   align-items: end;
-  padding: 46px 0 58px;
+  padding-block: 46px 58px;
 }
 
 .reference-eyebrow {
@@ -1131,7 +1131,7 @@ button:hover > .eyebrow {
   gap: 14px;
   border-top: 1px solid #555a53;
   border-bottom: 1px solid #555a53;
-  padding: 17px 0;
+  padding-block: 17px;
   color: #a7aaa0;
   font: 8px/1.5 var(--font-mono);
   letter-spacing: 0.09em;
@@ -1265,7 +1265,7 @@ button:hover > .eyebrow {
   .reference-collab-layout {
     grid-template-columns: 1fr;
     gap: 24px;
-    padding: 34px 0 43px;
+    padding-block: 34px 43px;
   }
 
   .reference-collab-title {
@@ -1276,7 +1276,7 @@ button:hover > .eyebrow {
     flex-wrap: wrap;
     justify-content: flex-start;
     gap: 11px 21px;
-    padding: 15px 0;
+    padding-block: 15px;
   }
 
   .reference-footer-top {
@@ -1328,7 +1328,7 @@ button:hover > .eyebrow {
 
   .reference-collab-layout {
     gap: 20px;
-    padding: 30px 0 36px;
+    padding-block: 30px 36px;
   }
 
   .reference-eyebrow {
@@ -1368,7 +1368,7 @@ button:hover > .eyebrow {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px 12px;
-    padding: 14px 0;
+    padding-block: 14px;
     font-size: 7px;
   }
 
