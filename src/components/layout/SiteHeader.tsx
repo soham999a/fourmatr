@@ -33,7 +33,7 @@ export function SiteHeader() {
         dark ? "border-line-dark bg-ink-home text-bone" : "border-line bg-bone text-ink",
       )}
     >
-      <div className="container-shell">
+      <div className="w-full px-5 sm:px-8 lg:px-10">
         <div className="flex h-[76px] items-center justify-between gap-8">
           <Link
             prefetch={false}
