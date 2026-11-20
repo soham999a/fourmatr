@@ -76,9 +76,9 @@ export default function HomePage() {
         <LazyOrbitalField />
         <div className="container-shell relative grid gap-12 py-16 md:py-24 lg:grid-cols-12 lg:items-center">
           <Reveal className="lg:col-span-5">
-            <h2 className="display-md text-bone">
+            <h2 className="font-display text-[1.75rem] leading-[1.05] tracking-[-0.024em] text-bone sm:text-3xl md:text-[2.25rem]">
               {HOME_SYSTEM.titleLines.map((line) => (
-                <span key={line} className="block">
+                <span key={line} className="block whitespace-nowrap">
                   {line}
                 </span>
               ))}
@@ -94,10 +94,6 @@ export default function HomePage() {
             <div className="border border-line-dark bg-ink/30">
               <div className="px-3 py-4 md:px-8 md:py-6">
                 <SharedSystemFigure />
-              </div>
-              <div className="border-t border-line-dark px-5 py-4 font-mono text-[0.625rem] uppercase tracking-[0.14em] text-bone/65">
-                <span className="block">Distinct domains.</span>
-                <span className="mt-1 block">Common foundations.</span>
               </div>
             </div>
           </Reveal>
@@ -299,20 +295,6 @@ export default function HomePage() {
               </div>
             }
           />
-        </Reveal>
-        <Reveal delay={80}>
-          <div className="mt-14 border-y border-line py-8">
-            <ul className="flex flex-wrap gap-x-8 gap-y-4 md:gap-x-12">
-              {HOME_COLLABORATION.audiences.map((audience) => (
-                <li
-                  key={audience}
-                  className="font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-muted"
-                >
-                  {audience}
-                </li>
-              ))}
-            </ul>
-          </div>
         </Reveal>
       </section>
     </>

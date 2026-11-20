@@ -75,11 +75,8 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
           <div className="lg:col-span-8">
             <Reveal delay={80}>
               <div className="border border-line bg-panel p-6 md:p-10">
-                <div className="mb-10 flex items-center justify-between gap-4">
+                <div className="mb-10 border-b border-line pb-6">
                   <Eyebrow tone="gold">Correspondence form</Eyebrow>
-                  <span className="font-mono text-[0.5625rem] tracking-[0.18em] text-muted">
-                    01 / 01
-                  </span>
                 </div>
                 <ContactForm platform={selected} />
               </div>

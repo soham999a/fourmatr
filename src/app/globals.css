@@ -169,6 +169,20 @@
     color: var(--muted);
   }
 
+  .statement-lg {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    line-height: 1.08;
+    letter-spacing: -0.022em;
+  }
+
+  .statement-md {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+    line-height: 1.15;
+    letter-spacing: -0.018em;
+  }
+
   .reveal {
     opacity: 0;
     transform: translateY(12px);
@@ -211,6 +225,42 @@
 .tone-dark .hairline,
 .tone-dark-home .hairline {
   border-color: var(--line-dark);
+}
+
+/* Inner-page hero image: masked into the page tone so the headline stays
+   readable. The image is painted from the initial HTML, with no canvas swap. */
+.page-hero-image {
+  position: absolute;
+  inset: 0 0 0 auto;
+  width: 100%;
+  pointer-events: none;
+}
+
+.page-hero-image img {
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.2;
+}
+
+.page-hero-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--bone) 0%, rgba(246, 243, 238, 0.86) 42%, rgba(246, 243, 238, 0.18) 100%);
+}
+
+.page-hero-image[data-dark="true"] img {
+  opacity: 0.34;
+}
+
+.page-hero-image[data-dark="true"]::after {
+  background: linear-gradient(90deg, var(--ink) 0%, rgba(7, 5, 2, 0.82) 42%, rgba(7, 5, 2, 0.16) 100%);
+}
+
+@media (min-width: 768px) {
+  .page-hero-image {
+    width: 58%;
+  }
 }
 
 /* Decorative SVG strokes inherit currentColor unless overridden */

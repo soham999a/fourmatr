@@ -95,7 +95,6 @@ export const RESEARCH_HERO = {
   eyebrow: "Open notebooks, slow questions",
   titleLines: ["Capabilities that begin as", "research."],
   lead: "We publish the questions, frameworks and early work that shape the platforms.",
-  index: "01-03",
 };
 
 export const RESEARCH_NOTE = {

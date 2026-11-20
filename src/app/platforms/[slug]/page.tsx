@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PlatformFigure } from "@/components/figures/PlatformFigure";
-import { LazyShaderField as ShaderField } from "@/components/webgl/LazyShaderField";
 import { InterfacePreview } from "@/components/sections/InterfacePreview";
 import { PageHero } from "@/components/sections/PageHero";
 import { ArrowLink } from "@/components/ui/ArrowLink";
@@ -59,6 +58,7 @@ export default async function PlatformPage({ params }: PageProps) {
         lead={platform.heroLead}
         status={platform.status}
         tone={platform.tone}
+        image={platform.homeImage}
         actions={[
           {
             label: `Open ${platform.name}`,
@@ -68,15 +68,7 @@ export default async function PlatformPage({ params }: PageProps) {
           },
           { label: platform.secondaryCta.label, href: platform.secondaryCta.href },
         ]}
-      >
-        <div className="absolute right-[-10%] top-[-20%] h-[520px] w-[720px] opacity-25">
-          <ShaderField
-            variant={platform.figure}
-            dark={dark}
-            fallback={<PlatformFigure kind={platform.figure} dark={dark} />}
-          />
-        </div>
-      </PageHero>
+      />
 
       {/* Statement */}
       <section className={dark ? "tone-dark py-20 md:py-28" : "py-20 md:py-28"}>
@@ -91,7 +83,7 @@ export default async function PlatformPage({ params }: PageProps) {
             <Rule className="hairline-draw mt-8 max-w-16" accent />
           </Reveal>
           <Reveal delay={80} className="lg:col-span-9">
-            <p className="font-display text-3xl leading-[1.15] md:text-4xl lg:text-5xl">
+            <p className={`statement-lg ${dark ? "text-bone" : "text-ink"}`}>
               {platform.statement}
             </p>
           </Reveal>
@@ -102,24 +94,8 @@ export default async function PlatformPage({ params }: PageProps) {
       <section className={dark ? "tone-dark pb-20 md:pb-28" : "pb-20 md:pb-28"}>
         <div className="container-shell">
           <Reveal>
-            <FigurePlate
-              caption={`Architecture diagram · ${platform.name}`}
-              tone={platform.tone}
-              annotations={platform.features.slice(0, 3).map((feature, index) => ({
-                label: feature.title,
-                x: 22 + index * 28,
-                y: 32 + index * 18,
-              }))}
-            >
-              <div className="flex items-center justify-between">
-                <Eyebrow tone={dark ? "bone" : "ink"}>Architecture diagram</Eyebrow>
-                <span
-                  className={`font-mono text-[0.625rem] tracking-[0.18em] ${dark ? "text-muted-light" : "text-muted"}`}
-                >
-                  FIGURE · {platform.name.toUpperCase()}
-                </span>
-              </div>
-              <div className="figure-glow mt-8 h-64 md:h-96">
+            <FigurePlate caption="Architecture diagram" tone={platform.tone} previewLabel="">
+              <div className="figure-glow h-64 md:h-96">
                 <PlatformFigure kind={platform.figure} dark={dark} />
               </div>
               <Rule className="mt-6" tone={dark ? "dark" : "light"} />
@@ -137,12 +113,11 @@ export default async function PlatformPage({ params }: PageProps) {
             <SectionHeader
               eyebrow="Capability"
               titleLines={[platform.featuresHeading]}
-              ghost={platform.roman}
               tone={platform.tone}
               size="md"
             />
           </Reveal>
-          <div className="mt-12 grid gap-px border border-line/60 bg-line/40 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-px border border-line/60 bg-line/40 md:grid-cols-2">
             {platform.features.map((feature, index) => (
               <Reveal key={feature.number} delay={index * 50}>
                 <HairlineCard
@@ -153,7 +128,7 @@ export default async function PlatformPage({ params }: PageProps) {
                   <span className="font-mono text-[0.625rem] tracking-[0.2em] text-gold">
                     {feature.number}
                   </span>
-                  <h3 className="mt-8 font-display text-2xl md:text-3xl">{feature.title}</h3>
+                  <h3 className="statement-md mt-8">{feature.title}</h3>
                   {feature.body ? (
                     <p className={`lede mt-3 text-sm ${dark ? "text-muted-light" : ""}`}>
                       {feature.body}
@@ -171,7 +146,7 @@ export default async function PlatformPage({ params }: PageProps) {
         <div className="container-shell grid gap-12 lg:grid-cols-12">
           <Reveal className="lg:col-span-4">
             <Eyebrow className="block">Interface</Eyebrow>
-            <h2 className="display-md mt-8">A view of the work.</h2>
+            <h2 className="statement-md mt-8">A view of the work.</h2>
             <p className="lede mt-6">
               An illustration of the platform layout. Labels are generic; no customer data is shown.
             </p>
@@ -194,7 +169,7 @@ export default async function PlatformPage({ params }: PageProps) {
           <div className="container-shell">
             <Reveal>
               <Eyebrow tone={dark ? "gold" : "gold"}>{platform.methodHeading ?? "The Method"}</Eyebrow>
-              <h2 className="display-md mt-8">{platform.methodLead ?? "How it works"}</h2>
+              <h2 className="statement-md mt-8">{platform.methodLead ?? "How it works"}</h2>
             </Reveal>
             <div className="mt-14 space-y-0 border-t border-line">
               {platform.method.map((step, index) => (
@@ -208,7 +183,7 @@ export default async function PlatformPage({ params }: PageProps) {
                       </span>
                     </div>
                     <div className="md:col-span-5">
-                      <h3 className="font-display text-2xl md:text-3xl">{step.title}</h3>
+                      <h3 className="statement-md">{step.title}</h3>
                     </div>
                     <div className="md:col-span-5">
                       {step.body ? (
@@ -246,7 +221,7 @@ export default async function PlatformPage({ params }: PageProps) {
                       <span className="font-mono text-[0.5625rem] tracking-[0.2em] text-muted">
                         {String(index + 1).padStart(2, "0")}
                       </span>
-                      <p className="mt-4 font-display text-xl">{item}</p>
+                      <p className="statement-md mt-4">{item}</p>
                     </HairlineCard>
                   ))}
                 </div>
@@ -278,7 +253,7 @@ export default async function PlatformPage({ params }: PageProps) {
             {platform.example ? (
               <Reveal delay={80} className="md:col-span-5">
                 <Eyebrow>Example question</Eyebrow>
-                <p className="mt-8 font-display text-2xl leading-snug">“{platform.example}”</p>
+                <p className="statement-md mt-8">“{platform.example}”</p>
               </Reveal>
             ) : null}
           </div>
@@ -289,10 +264,8 @@ export default async function PlatformPage({ params }: PageProps) {
       <section className="tone-dark band-wipe py-20 md:py-28">
         <div className="container-shell grid gap-10 lg:grid-cols-12">
           <Reveal className="lg:col-span-8">
-            <Eyebrow tone="gold">Platform {platform.roman}</Eyebrow>
-            <p className="mt-8 font-display text-4xl leading-tight md:text-5xl">
-              {platform.closingLead}
-            </p>
+            <Eyebrow tone="gold">{platform.capability}</Eyebrow>
+            <p className="statement-lg mt-8 text-bone">{platform.closingLead}</p>
             {platform.note ? (
               <p className="mt-8 max-w-xl text-sm text-muted-light">{platform.note}</p>
             ) : null}
@@ -308,15 +281,14 @@ export default async function PlatformPage({ params }: PageProps) {
           <Reveal delay={100} className="lg:col-span-4 lg:pt-16">
             <div className="border border-line-dark p-6">
               <p className="font-mono text-[0.625rem] uppercase tracking-[0.2em] text-muted-light">
-                Platform index
+                Four platforms
               </p>
               <div className="mt-6 space-y-3">
                 {PLATFORMS.map((item) => (
-                  <div key={item.slug} className="flex items-center justify-between gap-4 text-sm">
+                  <div key={item.slug} className="text-sm">
                     <span className={item.slug === platform.slug ? "text-gold" : "text-bone/70"}>
                       {item.name}
                     </span>
-                    <span className="font-mono text-[0.5625rem] text-muted-light">{item.roman}</span>
                   </div>
                 ))}
               </div>

@@ -10,9 +10,11 @@ export function SiteFooter() {
           <div className="lg:col-span-4">
             <div className="flex items-center gap-3">
               <BrandMark size={40} />
-              <div className="font-display text-3xl leading-none tracking-[-0.03em]">
-                MATRKA
-                <span className="ml-2 font-mono text-[0.625rem] uppercase tracking-[0.18em]">
+              <div className="flex flex-col">
+                <span className="font-display text-3xl leading-none tracking-[-0.03em]">
+                  MATRKA
+                </span>
+                <span className="mt-2 font-mono text-[0.625rem] uppercase tracking-[0.18em]">
                   Applied Systems
                 </span>
               </div>

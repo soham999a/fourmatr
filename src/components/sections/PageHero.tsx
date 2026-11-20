@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { ReactNode } from "react";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -20,6 +21,7 @@ interface PageHeroProps {
   status?: PlatformStatus;
   actions?: Action[];
   tone?: "light" | "dark";
+  image?: string;
   children?: ReactNode;
   className?: string;
 }
@@ -32,6 +34,7 @@ export function PageHero({
   status,
   actions,
   tone = "light",
+  image,
   children,
   className,
 }: PageHeroProps) {
@@ -45,10 +48,22 @@ export function PageHero({
         className,
       )}
     >
+      {image ? (
+        <div className="page-hero-image" data-dark={dark}>
+          <Image
+            src={image}
+            alt=""
+            fill
+            sizes="(min-width: 768px) 58vw, 100vw"
+            className="object-cover"
+            preload
+          />
+        </div>
+      ) : null}
       {children ? (
         <div className="pointer-events-none absolute inset-0 opacity-70">{children}</div>
       ) : null}
-      <div className="container-shell relative grid gap-12 lg:grid-cols-12">
+      <div className="container-shell relative z-10 grid gap-12 lg:grid-cols-12">
         <div className="lg:col-span-8">
           <Eyebrow tone={dark ? "bone" : "ink"} className="block">
             {breadcrumb ? (

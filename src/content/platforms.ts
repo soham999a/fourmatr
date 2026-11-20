@@ -74,7 +74,7 @@ export const PLATFORMS: Platform[] = [
     homeCtaLabel: "Explore ARPS",
     homeImage: "/platforms/arps-supply-chain.jpg",
     homeImageOpacity: 0.78,
-    liveUrl: "https://arps.matrka.net/",
+    liveUrl: "https://aps-intelligence.vercel.app/",
     tone: "light",
     heroLead: "Resilient decisions across procurement, logistics and risk.",
     statement:
@@ -194,7 +194,7 @@ export const PLATFORMS: Platform[] = [
     homeCtaLabel: "Explore Datum",
     homeImage: "/platforms/datum-analytics.jpg",
     homeImageOpacity: 0.76,
-    liveUrl: "https://datum.matrka.net/",
+    liveUrl: "https://datum-nine-henna.vercel.app/",
     tone: "light",
     heroLead: "Ask your data. Understand the answer.",
     statement:
@@ -253,7 +253,7 @@ export const PLATFORMS: Platform[] = [
     homeCtaLabel: "Explore linked site",
     homeImage: "/platforms/humming-operations.jpg",
     homeImageOpacity: 0.78,
-    liveUrl: "https://humming.matrka.net/",
+    liveUrl: "https://humming-amber.vercel.app/",
     tone: "light",
     heroLead: "An AI copilot for the people who run the business.",
     statement:

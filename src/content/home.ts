@@ -74,11 +74,4 @@ export const HOME_COLLABORATION = {
   body: "We welcome thoughtful conversations with enterprises, institutions, researchers, funders and technology partners working on consequential systems.",
   note: "A small number of carefully considered engagements each year.",
   cta: { label: "Begin a correspondence", href: "/contact" },
-  audiences: [
-    "ENTERPRISES",
-    "INSTITUTIONS",
-    "RESEARCH LABS",
-    "INVESTORS & FUNDERS",
-    "TECHNOLOGY PARTNERS",
-  ],
 };

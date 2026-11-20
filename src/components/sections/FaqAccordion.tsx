@@ -10,7 +10,7 @@ export function FaqAccordion({ items }: { items: FaqItem[] }) {
               <span className="mt-1 font-mono text-[0.625rem] tracking-[0.18em] text-muted">
                 {String(index + 1).padStart(2, "0")}
               </span>
-              <span className="font-display text-xl md:text-2xl">{item.question}</span>
+              <span className="statement-md">{item.question}</span>
             </span>
             <span
               aria-hidden="true"

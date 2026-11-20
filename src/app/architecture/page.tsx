@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { HeroField } from "@/components/figures/HeroField";
+import Image from "next/image";
 import { PlatformFigure } from "@/components/figures/PlatformFigure";
-import { LazyShaderField as ShaderField } from "@/components/webgl/LazyShaderField";
 import { LayerDiagram } from "@/components/sections/LayerDiagram";
 import { PageHero } from "@/components/sections/PageHero";
 import { ArrowLink } from "@/components/ui/ArrowLink";
@@ -28,6 +27,9 @@ export const metadata: Metadata = pageMetadata({
   path: "/architecture",
 });
 
+const architectureHeroImage =
+  PLATFORMS.find((platform) => platform.slug === "gravity")?.homeImage ?? PLATFORMS[0].homeImage;
+
 export default function ArchitecturePage() {
   return (
     <>
@@ -36,12 +38,9 @@ export default function ArchitecturePage() {
         eyebrow="The Architecture"
         title="The structure beneath the surface."
         lead={ARCHITECTURE_INTRO}
+        image={architectureHeroImage}
         actions={[{ label: "Explore the platforms", href: "/platforms", variant: "primary" }]}
-      >
-        <div className="absolute right-0 top-0 h-full w-2/3 opacity-30">
-          <ShaderField variant="gravity" dark={false} fallback={<HeroField variant="gravity" />} />
-        </div>
-      </PageHero>
+      />
 
       <StickySubNav
         items={[
@@ -59,8 +58,6 @@ export default function ArchitecturePage() {
           <SectionHeader
             eyebrow="Five layers"
             titleLines={["One stack,", "five layers."]}
-            index="L01 — L05"
-            ghost="L"
             aside={
               <p className="lede">
                 The platforms differ in purpose. The reasoning beneath them is deliberately shared.
@@ -80,7 +77,6 @@ export default function ArchitecturePage() {
             <SectionHeader
               eyebrow="Field view"
               titleLines={["A shared field,", "not a stack of silos."]}
-              index="FIGURE 01"
               tone="dark"
               aside={
                 <p className="lede text-muted-light">
@@ -94,11 +90,7 @@ export default function ArchitecturePage() {
               caption="Field view · Shared reasoning"
               tone="dark"
               className="mt-14"
-              annotations={[
-                { label: "Shared field", x: 22, y: 30 },
-                { label: "Layer convergence", x: 68, y: 46 },
-                { label: "Compounding", x: 44, y: 74 },
-              ]}
+              previewLabel=""
             >
               <div className="figure-glow h-72 md:h-[30rem]">
                 <PlatformFigure kind="gravity" dark />
@@ -121,17 +113,17 @@ export default function ArchitecturePage() {
         <Reveal>
           <SectionHeader eyebrow="Principles" titleLines={["How we decide", "what to build."]} />
         </Reveal>
-        <div className="mt-14 grid gap-px border border-line bg-line/60 md:grid-cols-3">
+        <div className="mt-14 grid gap-px border border-line bg-line/60">
           {ARCHITECTURE_PRINCIPLES.map((principle, index) => (
             <Reveal key={principle.number} delay={index * 70}>
-              <HairlineCard className="h-full bg-bone" accent={index === 0}>
-                <span className="font-mono text-[0.625rem] tracking-[0.2em] text-gold">
-                  {principle.number}
-                </span>
-                <h3 className="mt-10 font-display text-2xl leading-snug md:text-3xl">
-                  {principle.title}
-                </h3>
-                <p className="lede mt-4 text-sm">{principle.body}</p>
+              <HairlineCard className="bg-bone">
+                <div className="grid gap-5 md:grid-cols-12 md:items-center">
+                  <span className="font-mono text-[0.625rem] tracking-[0.2em] text-gold md:col-span-1">
+                    {principle.number}
+                  </span>
+                  <h3 className="statement-md md:col-span-5">{principle.title}</h3>
+                  <p className="lede text-sm md:col-span-6">{principle.body}</p>
+                </div>
               </HairlineCard>
             </Reveal>
           ))}
@@ -146,21 +138,26 @@ export default function ArchitecturePage() {
             <h2 className="display-md mt-8">{COMPOUNDING.title}</h2>
           </Reveal>
           <Reveal delay={80} className="lg:col-span-8">
-            <p className="font-display text-2xl leading-snug md:text-3xl">{COMPOUNDING.lead}</p>
+            <p className="statement-md">{COMPOUNDING.lead}</p>
             <div className="mt-12 grid gap-px border border-line bg-line/60 sm:grid-cols-2">
-              {PLATFORMS.map((platform, index) => (
+              {PLATFORMS.map((platform) => (
                 <HairlineCard key={platform.slug} className="bg-bone">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <Eyebrow className="text-gold">{platform.roman}</Eyebrow>
-                      <h3 className="mt-4 font-display text-2xl">{platform.name}</h3>
-                      <p className="mt-2 text-xs text-muted">{platform.capability}</p>
-                    </div>
-                    <span className="font-mono text-[0.5625rem] text-muted">
-                      0{index + 1}
-                    </span>
+                  <div className="relative h-32 overflow-hidden">
+                    <Image
+                      src={platform.homeImage}
+                      alt=""
+                      fill
+                      sizes="(min-width: 640px) 45vw, 100vw"
+                      className="object-cover"
+                      style={{ opacity: 0.78 }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/15 to-transparent" />
                   </div>
-                  <div className="mt-8">
+                  <div className="mt-6">
+                    <Eyebrow className="text-gold">{platform.capability}</Eyebrow>
+                    <h3 className="statement-md mt-3">{platform.name}</h3>
+                  </div>
+                  <div className="mt-6">
                     <ArrowLink href={`/platforms/${platform.slug}`}>View platform</ArrowLink>
                   </div>
                 </HairlineCard>
@@ -176,7 +173,7 @@ export default function ArchitecturePage() {
           <div className="grid gap-8 md:grid-cols-12 md:items-end">
             <div className="md:col-span-8">
               <Eyebrow>Next</Eyebrow>
-              <p className="mt-6 max-w-2xl font-display text-3xl leading-tight md:text-4xl">
+              <p className="statement-md mt-6 max-w-2xl">
                 Read the research behind the architecture.
               </p>
             </div>

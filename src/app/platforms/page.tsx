@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PlatformFigure } from "@/components/figures/PlatformFigure";
+import Image from "next/image";
 import { ComparisonTable } from "@/components/sections/ComparisonTable";
 import { PageHero } from "@/components/sections/PageHero";
 import { ArrowLink } from "@/components/ui/ArrowLink";
@@ -19,6 +19,9 @@ export const metadata: Metadata = pageMetadata({
   path: "/platforms",
 });
 
+const platformsHeroImage =
+  PLATFORMS.find((platform) => platform.slug === "gravity")?.homeImage ?? PLATFORMS[0].homeImage;
+
 export default function PlatformsPage() {
   return (
     <>
@@ -26,6 +29,7 @@ export default function PlatformsPage() {
         breadcrumb="Home"
         eyebrow="The Platforms"
         title="Four intelligences. One architecture."
+        image={platformsHeroImage}
         lead="Each platform addresses a different decision. The reasoning beneath them is deliberately shared."
         actions={[
           { label: "Explore the architecture", href: "/architecture" },
@@ -34,18 +38,15 @@ export default function PlatformsPage() {
       />
 
       <section className="container-shell border-b border-line py-14 md:py-20">
-        <div className="mb-10 flex items-end justify-between gap-6">
+        <div className="mb-10 border-b border-line pb-6">
           <Eyebrow>At a glance</Eyebrow>
-          <span className="font-mono text-[0.625rem] uppercase tracking-[0.18em] text-muted">
-            01 — 04
-          </span>
         </div>
         <ComparisonTable platforms={PLATFORMS} />
       </section>
 
       <section className="container-shell py-20 md:py-28">
         <div className="space-y-20 md:space-y-28">
-          {PLATFORMS.map((platform, index) => {
+          {PLATFORMS.map((platform) => {
             const dark = platform.tone === "dark";
             return (
               <Reveal key={platform.slug}>
@@ -58,21 +59,12 @@ export default function PlatformsPage() {
                 >
                   <div className="grid gap-10 lg:grid-cols-12">
                     <div className="lg:col-span-3">
-                      <div className="flex items-center gap-4">
-                        <Eyebrow tone={dark ? "gold" : "gold"}>{platform.roman}</Eyebrow>
-                        <Rule className="max-w-12" accent />
-                      </div>
-                      <p
-                        className={`mt-6 font-mono text-[0.625rem] uppercase tracking-[0.18em] ${dark ? "text-muted-light" : "text-muted"}`}
-                      >
-                        {String(index + 1).padStart(2, "0")} / 04
-                      </p>
+                      <Eyebrow tone="gold">{platform.roman}</Eyebrow>
+                      <Rule className="hairline-draw mt-8 max-w-12" accent />
                     </div>
                     <div className="lg:col-span-6">
                       <h2 className="display-md">{platform.name}</h2>
-                      <p
-                        className={`font-display text-xl mt-3 ${dark ? "text-bone/80" : "text-muted"}`}
-                      >
+                      <p className={`statement-md mt-4 ${dark ? "text-bone/80" : "text-muted"}`}>
                         {platform.capability}
                       </p>
                       <p className={`lede mt-6 ${dark ? "text-muted-light" : ""}`}>
@@ -92,17 +84,24 @@ export default function PlatformsPage() {
                     </div>
                     <div className="lg:col-span-3">
                       <HairlineCard tone={platform.tone} className={dark ? "bg-ink" : "bg-bone"}>
-                        <div className="h-28">
-                          <PlatformFigure
-                            kind={platform.figure}
-                            dark={dark}
-                            className="opacity-90"
+                        <div className="relative h-40 overflow-hidden">
+                          <Image
+                            src={platform.homeImage}
+                            alt=""
+                            fill
+                            sizes="(min-width: 1024px) 22vw, (min-width: 768px) 45vw, 100vw"
+                            className="object-cover"
+                            style={{ opacity: 0.78 }}
                           />
+                          <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/20 to-transparent" />
+                          <span className="absolute bottom-3 left-3 font-mono text-[0.5625rem] uppercase tracking-[0.18em] text-bone">
+                            {platform.name}
+                          </span>
                         </div>
                         <p
                           className={`mt-4 font-mono text-[0.5625rem] uppercase tracking-[0.18em] ${dark ? "text-muted-light" : "text-muted"}`}
                         >
-                          Figure {String(index + 1).padStart(2, "0")}
+                          {platform.capability}
                         </p>
                       </HairlineCard>
                     </div>

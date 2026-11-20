@@ -42,9 +42,11 @@ export function SiteHeader() {
             aria-label="Matrka Applied Systems — home"
           >
             <BrandMark size={34} preload />
-            <span className="font-display text-2xl tracking-[-0.03em]">MATRKA</span>
-            <span className="hidden font-mono text-[0.625rem] uppercase tracking-[0.18em] opacity-70 sm:inline">
-              Applied Systems
+            <span className="flex flex-col leading-none">
+              <span className="font-display text-2xl tracking-[-0.03em]">MATRKA</span>
+              <span className="mt-1 font-mono text-[0.5625rem] uppercase tracking-[0.18em] opacity-70">
+                Applied Systems
+              </span>
             </span>
           </Link>
 

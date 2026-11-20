@@ -15,6 +15,7 @@ import {
   ENGAGEMENT_SHAPES,
   FAQ_ITEMS,
 } from "@/content/engage";
+import { PLATFORMS } from "@/content/platforms";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = pageMetadata({
@@ -22,6 +23,9 @@ export const metadata: Metadata = pageMetadata({
   description: ENGAGE_INTRO,
   path: "/engage",
 });
+
+const engageHeroImage =
+  PLATFORMS.find((platform) => platform.slug === "humming")?.homeImage ?? PLATFORMS[0].homeImage;
 
 export default function EngagePage() {
   return (
@@ -31,6 +35,7 @@ export default function EngagePage() {
         eyebrow="Engagement"
         title={ENGAGE_LEAD}
         lead={ENGAGE_INTRO}
+        image={engageHeroImage}
         actions={[{ label: "Begin a correspondence", href: "/contact", variant: "primary" }]}
       />
 
@@ -40,8 +45,6 @@ export default function EngagePage() {
           <SectionHeader
             eyebrow="Engagement shapes"
             titleLines={["Four ways", "to begin."]}
-            index="α — δ"
-            ghost="A"
             aside={<p className="lede">Each shape begins with the decision, not the model.</p>}
           />
         </Reveal>
@@ -49,13 +52,13 @@ export default function EngagePage() {
           {ENGAGEMENT_SHAPES.map((shape, index) => (
             <Reveal key={shape.id} delay={index * 60}>
               <HairlineCard className="h-full bg-bone" accent={index === 0}>
-                <div className="flex items-start justify-between gap-4">
-                  <span className="font-display text-4xl text-gold">{shape.letter}</span>
+                <div className="flex items-start justify-between gap-4 border-b border-line pb-5">
+                  <Eyebrow className="text-gold">Engagement shape</Eyebrow>
                   <span className="font-mono text-[0.625rem] tracking-[0.18em] text-muted">
                     {shape.duration}
                   </span>
                 </div>
-                <h3 className="mt-10 font-display text-3xl">{shape.name}</h3>
+                <h3 className="statement-md mt-10">{shape.name}</h3>
                 <p className="lede mt-4 text-sm">{shape.body}</p>
               </HairlineCard>
             </Reveal>
@@ -73,14 +76,14 @@ export default function EngagePage() {
               tone="dark"
             />
           </Reveal>
-          <div className="mt-14 grid gap-0 md:grid-cols-5">
+          <div className="mt-14 border-t border-line-dark">
             {ENGAGEMENT_PROCESS.map((step, index) => (
               <Reveal key={step} delay={index * 50}>
-                <div className="border-l border-line-dark px-5 py-6 md:min-h-48 md:border-t md:border-l-0 md:px-4">
-                  <span className="font-mono text-[0.625rem] tracking-[0.2em] text-gold">
+                <div className="grid gap-3 border-b border-line-dark py-6 md:grid-cols-12 md:items-center">
+                  <span className="font-mono text-[0.625rem] tracking-[0.2em] text-gold md:col-span-2">
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                  <p className="mt-6 font-display text-lg leading-snug md:text-xl">{step}</p>
+                  <p className="statement-md text-bone md:col-span-10">{step}</p>
                 </div>
               </Reveal>
             ))}
@@ -100,14 +103,9 @@ export default function EngagePage() {
           </Reveal>
           <Reveal delay={80} className="lg:col-span-7">
             <div className="grid gap-px border border-line bg-line/60 sm:grid-cols-2">
-              {ENGAGEMENT_AUDIENCES.map((audience, index) => (
+              {ENGAGEMENT_AUDIENCES.map((audience) => (
                 <HairlineCard key={audience} className="bg-bone">
-                  <div className="flex items-start justify-between gap-4">
-                    <p className="font-display text-xl">{audience}</p>
-                    <span className="font-mono text-[0.5625rem] text-muted">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                  </div>
+                  <p className="statement-md">{audience}</p>
                 </HairlineCard>
               ))}
             </div>
@@ -120,7 +118,7 @@ export default function EngagePage() {
         <div className="container-shell grid gap-12 lg:grid-cols-12">
           <Reveal className="lg:col-span-4">
             <Eyebrow>Questions</Eyebrow>
-            <h2 className="display-md mt-8">Before you write.</h2>
+            <h2 className="statement-md mt-8">Before you write.</h2>
             <Rule className="mt-10 max-w-16" accent />
           </Reveal>
           <Reveal delay={80} className="lg:col-span-8">
@@ -136,7 +134,7 @@ export default function EngagePage() {
             <div className="grid gap-10 md:grid-cols-12 md:items-end">
               <div className="md:col-span-8">
                 <Eyebrow tone="gold">Begin</Eyebrow>
-                <p className="mt-6 max-w-2xl font-display text-3xl leading-tight md:text-4xl">
+                <p className="statement-md mt-6 max-w-2xl">
                   Tell us the decision you are trying to make.
                 </p>
               </div>

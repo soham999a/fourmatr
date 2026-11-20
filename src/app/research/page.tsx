@@ -15,6 +15,7 @@ import {
   RESEARCH_NOTE,
   RESEARCH_STAGE_NOTE,
 } from "@/content/research";
+import { PLATFORMS } from "@/content/platforms";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = pageMetadata({
@@ -22,6 +23,9 @@ export const metadata: Metadata = pageMetadata({
   description: RESEARCH_HERO.lead,
   path: "/research",
 });
+
+const researchHeroImage =
+  PLATFORMS.find((platform) => platform.slug === "datum")?.homeImage ?? PLATFORMS[0].homeImage;
 
 export default function ResearchPage() {
   return (
@@ -31,6 +35,7 @@ export default function ResearchPage() {
         eyebrow={RESEARCH_HERO.eyebrow}
         title={RESEARCH_HERO.titleLines.join(" ")}
         lead={RESEARCH_HERO.lead}
+        image={researchHeroImage}
         actions={[{ label: "Explore the platforms", href: "/platforms", variant: "primary" }]}
       />
 
@@ -49,8 +54,6 @@ export default function ResearchPage() {
           <SectionHeader
             eyebrow="Frameworks"
             titleLines={["The ideas beneath", "the systems."]}
-            index={RESEARCH_HERO.index}
-            ghost="R"
           />
         </Reveal>
         <div className="mt-14 space-y-6">
@@ -60,12 +63,9 @@ export default function ResearchPage() {
                 <div className="grid gap-8 lg:grid-cols-12">
                   <div className="lg:col-span-3">
                     <Eyebrow className="text-gold">{framework.kind}</Eyebrow>
-                    <p className="mt-4 font-mono text-[0.625rem] tracking-[0.18em] text-muted">
-                      0{index + 1} / 0{RESEARCH_FRAMEWORKS.length}
-                    </p>
                   </div>
                   <div className="lg:col-span-9">
-                    <h3 className="font-display text-3xl md:text-4xl">{framework.name}</h3>
+                    <h3 className="statement-md">{framework.name}</h3>
                     <p className="mt-3 text-sm text-muted">{framework.lead}</p>
                     <p className="lede reading-margin mt-6">{framework.body}</p>
                     <div className="mt-8 grid gap-3 sm:grid-cols-3">
@@ -97,15 +97,10 @@ export default function ResearchPage() {
             {PUBLICATIONS.map((publication, index) => (
               <Reveal key={publication.id} delay={index * 60}>
                 <div className="group grid gap-4 border-b border-line py-7 md:grid-cols-12 md:items-center">
-                  <div className="md:col-span-1">
-                    <span className="font-mono text-[0.625rem] tracking-[0.2em] text-muted transition-colors group-hover:text-gold">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                  </div>
                   <div className="md:col-span-3">
                     <Eyebrow className="text-gold">{publication.kind}</Eyebrow>
                   </div>
-                  <div className="md:col-span-5">
+                  <div className="md:col-span-6">
                     <h3 className="font-display text-xl leading-snug md:text-2xl">
                       {publication.title}
                     </h3>
@@ -138,7 +133,7 @@ export default function ResearchPage() {
               <Rule className="mt-8 max-w-16" accent />
             </div>
             <div className="lg:col-span-8">
-              <h2 className="display-md">{RESEARCH_NOTE.title}</h2>
+              <h2 className="statement-md">{RESEARCH_NOTE.title}</h2>
               <p className="lede mt-8">{RESEARCH_NOTE.body}</p>
             </div>
           </div>
@@ -150,7 +145,7 @@ export default function ResearchPage() {
         <div className="container-shell flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
           <div>
             <Eyebrow tone="gold">Correspondence</Eyebrow>
-            <p className="mt-4 max-w-xl font-display text-2xl md:text-3xl">
+            <p className="statement-md mt-4 max-w-xl">
               Discuss the research with us directly.
             </p>
           </div>
