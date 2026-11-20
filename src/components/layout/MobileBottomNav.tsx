@@ -22,7 +22,7 @@ export function MobileBottomNav() {
       {NAV_ITEMS.map((item) => {
         const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
         return (
-          <Link
+          <Link prefetch={false}
             key={item.href}
             href={item.href}
             aria-current={active ? "page" : undefined}

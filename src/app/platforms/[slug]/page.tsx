@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PlatformFigure } from "@/components/figures/PlatformFigure";
+import { LazyShaderField as ShaderField } from "@/components/webgl/LazyShaderField";
 import { InterfacePreview } from "@/components/sections/InterfacePreview";
 import { PageHero } from "@/components/sections/PageHero";
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { FigurePlate } from "@/components/ui/FigurePlate";
 import { HairlineCard } from "@/components/ui/HairlineCard";
 import { Reveal } from "@/components/ui/Reveal";
 import { Rule } from "@/components/ui/Rule";
@@ -67,11 +69,13 @@ export default async function PlatformPage({ params }: PageProps) {
           { label: platform.secondaryCta.label, href: platform.secondaryCta.href },
         ]}
       >
-        {dark ? (
-          <div className="absolute right-[-10%] top-[-20%] h-[520px] w-[720px] opacity-25">
-            <PlatformFigure kind={platform.figure} dark />
-          </div>
-        ) : null}
+        <div className="absolute right-[-10%] top-[-20%] h-[520px] w-[720px] opacity-25">
+          <ShaderField
+            variant={platform.figure}
+            dark={dark}
+            fallback={<PlatformFigure kind={platform.figure} dark={dark} />}
+          />
+        </div>
       </PageHero>
 
       {/* Statement */}
@@ -98,8 +102,14 @@ export default async function PlatformPage({ params }: PageProps) {
       <section className={dark ? "tone-dark pb-20 md:pb-28" : "pb-20 md:pb-28"}>
         <div className="container-shell">
           <Reveal>
-            <div
-              className={`figure-glow border p-4 md:p-8 ${dark ? "border-line-dark bg-ink" : "border-line bg-panel"}`}
+            <FigurePlate
+              caption={`Architecture diagram · ${platform.name}`}
+              tone={platform.tone}
+              annotations={platform.features.slice(0, 3).map((feature, index) => ({
+                label: feature.title,
+                x: 22 + index * 28,
+                y: 32 + index * 18,
+              }))}
             >
               <div className="flex items-center justify-between">
                 <Eyebrow tone={dark ? "bone" : "ink"}>Architecture diagram</Eyebrow>
@@ -109,11 +119,11 @@ export default async function PlatformPage({ params }: PageProps) {
                   FIGURE · {platform.name.toUpperCase()}
                 </span>
               </div>
-              <div className="mt-8 h-64 md:h-96">
+              <div className="figure-glow mt-8 h-64 md:h-96">
                 <PlatformFigure kind={platform.figure} dark={dark} />
               </div>
               <Rule className="mt-6" tone={dark ? "dark" : "light"} />
-            </div>
+            </FigurePlate>
           </Reveal>
         </div>
       </section>
@@ -276,7 +286,7 @@ export default async function PlatformPage({ params }: PageProps) {
       ) : null}
 
       {/* Closing */}
-      <section className="tone-dark py-20 md:py-28">
+      <section className="tone-dark band-wipe py-20 md:py-28">
         <div className="container-shell grid gap-10 lg:grid-cols-12">
           <Reveal className="lg:col-span-8">
             <Eyebrow tone="gold">Platform {platform.roman}</Eyebrow>

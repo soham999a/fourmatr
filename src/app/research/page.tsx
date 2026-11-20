@@ -7,6 +7,7 @@ import { HairlineCard } from "@/components/ui/HairlineCard";
 import { Reveal } from "@/components/ui/Reveal";
 import { Rule } from "@/components/ui/Rule";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { StickySubNav } from "@/components/ui/StickySubNav";
 import {
   PUBLICATIONS,
   RESEARCH_FRAMEWORKS,
@@ -33,8 +34,17 @@ export default function ResearchPage() {
         actions={[{ label: "Explore the platforms", href: "/platforms", variant: "primary" }]}
       />
 
+      <StickySubNav
+        items={[
+          { id: "frameworks", label: "Frameworks" },
+          { id: "publications", label: "Publications" },
+          { id: "note", label: "Note" },
+          { id: "next", label: "Next" },
+        ]}
+      />
+
       {/* Frameworks */}
-      <section className="container-shell py-20 md:py-28" id="frameworks">
+      <section className="reading-mode container-shell py-20 md:py-28" id="frameworks">
         <Reveal>
           <SectionHeader
             eyebrow="Frameworks"
@@ -57,7 +67,7 @@ export default function ResearchPage() {
                   <div className="lg:col-span-9">
                     <h3 className="font-display text-3xl md:text-4xl">{framework.name}</h3>
                     <p className="mt-3 text-sm text-muted">{framework.lead}</p>
-                    <p className="lede mt-6">{framework.body}</p>
+                    <p className="lede reading-margin mt-6">{framework.body}</p>
                     <div className="mt-8 grid gap-3 sm:grid-cols-3">
                       {framework.details.map((detail) => (
                         <div key={detail} className="border border-line px-4 py-3 text-xs text-muted">
@@ -120,7 +130,7 @@ export default function ResearchPage() {
       </section>
 
       {/* Note */}
-      <section className="container-shell py-20 md:py-28">
+      <section className="reading-mode container-shell py-20 md:py-28" id="note">
         <Reveal>
           <div className="grid gap-10 lg:grid-cols-12">
             <div className="lg:col-span-4">
@@ -136,7 +146,7 @@ export default function ResearchPage() {
       </section>
 
       {/* CTA */}
-      <section className="tone-dark py-16 md:py-20">
+      <section className="tone-dark band-wipe py-16 md:py-20" id="next">
         <div className="container-shell flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
           <div>
             <Eyebrow tone="gold">Correspondence</Eyebrow>

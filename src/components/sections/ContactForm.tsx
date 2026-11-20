@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { PLATFORMS } from "@/content/platforms";
+import { LazyShaderField as ShaderField } from "@/components/webgl/LazyShaderField";
 import type { ContactField } from "@/lib/validation";
 
 interface ContactFormProps {
@@ -72,9 +73,10 @@ export function ContactForm({ platform }: ContactFormProps) {
       <div
         role="status"
         aria-live="polite"
-        className="border border-gold/60 bg-tint/40 p-8 md:p-12"
+        className="relative overflow-hidden border border-gold/60 bg-tint/40 p-8 md:p-12"
       >
-        <div className="flex items-start gap-6">
+        <ShaderField variant="ripple" dark={false} oneShot />
+        <div className="relative z-10 flex items-start gap-6">
           <span
             aria-hidden="true"
             className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-gold text-gold"

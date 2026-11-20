@@ -46,6 +46,7 @@ export function ComparisonTable({ platforms }: { platforms: Platform[] }) {
               </td>
               <td className="block pt-4 md:table-cell md:px-6 md:py-6">
                 <Link
+                  prefetch={false}
                   href={`/platforms/${platform.slug}`}
                   className="inline-flex items-center gap-2 border-b border-gold/60 pb-1 font-mono text-[0.6875rem] uppercase tracking-[0.16em] transition-colors hover:border-gold hover:text-gold"
                 >

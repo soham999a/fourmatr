@@ -3,11 +3,14 @@ import Link from "next/link";
 import { HeroField } from "@/components/figures/HeroField";
 import { PlatformFigure } from "@/components/figures/PlatformFigure";
 import { PointerGlow } from "@/components/figures/PointerGlow";
+import { LazyShaderField as ShaderField } from "@/components/webgl/LazyShaderField";
 import { LayerDiagram } from "@/components/sections/LayerDiagram";
 import { ArrowLink } from "@/components/ui/ArrowLink";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { FigureCounter } from "@/components/ui/FigureCounter";
+import { FigurePlate } from "@/components/ui/FigurePlate";
+import { MagneticWrap } from "@/components/ui/MagneticWrap";
 import { HairlineCard } from "@/components/ui/HairlineCard";
 import { Reveal } from "@/components/ui/Reveal";
 import { Rule } from "@/components/ui/Rule";
@@ -42,18 +45,18 @@ export default function HomePage() {
   return (
     <>
       {/* 01 — Hero */}
-      <section className="tone-dark-home relative overflow-hidden">
+      <section className="tone-dark-home relative overflow-hidden" id="top">
         <div className="pointer-events-none absolute inset-0 text-bone/80">
-          <HeroField variant="home" />
+          <ShaderField variant="hero" dark fallback={<HeroField variant="home" />} />
         </div>
         <PointerGlow />
         <div className="container-shell relative grid min-h-[86vh] content-end gap-10 py-24 md:py-32">
-          <Reveal>
+          <Reveal immediate>
             <Eyebrow tone="bone" className="block">
               {HOME_HERO.eyebrow}
             </Eyebrow>
           </Reveal>
-          <Reveal delay={80}>
+          <Reveal immediate>
             <h1 className="display-xl max-w-5xl text-bone">
               {HOME_HERO.titleLines.map((line) => (
                 <span key={line} className="block">
@@ -63,29 +66,25 @@ export default function HomePage() {
             </h1>
           </Reveal>
           <div className="grid gap-10 lg:grid-cols-12">
-            <Reveal delay={140} className="lg:col-span-7">
+            <Reveal immediate className="lg:col-span-7">
               <p className="lede max-w-2xl text-bone/75">{HOME_HERO.lead}</p>
               <div className="mt-10 flex flex-wrap gap-4">
-                <Button href={HOME_HERO.primary.href} variant="primary">
-                  {HOME_HERO.primary.label}
-                </Button>
-                <Button href={HOME_HERO.secondary.href}>{HOME_HERO.secondary.label}</Button>
+                <MagneticWrap>
+                  <Button href={HOME_HERO.primary.href} variant="primary">
+                    {HOME_HERO.primary.label}
+                  </Button>
+                </MagneticWrap>
+                <MagneticWrap>
+                  <Button href={HOME_HERO.secondary.href}>{HOME_HERO.secondary.label}</Button>
+                </MagneticWrap>
               </div>
             </Reveal>
-            <div className="lg:col-span-5 lg:flex lg:items-end lg:justify-end">
-              <Reveal delay={200} className="flex items-end gap-8">
-                <FigureCounter value={HOME_HERO.counter} tone="dark" label="Section counter" />
-                <span className="scroll-cue font-mono text-[0.625rem] uppercase tracking-[0.2em] text-muted-light">
-                  {HOME_HERO.scroll} ↓
-                </span>
-              </Reveal>
-            </div>
           </div>
         </div>
       </section>
 
       {/* 02 — Position */}
-      <section className="container-shell py-24 md:py-32">
+      <section className="container-shell py-24 md:py-32" id="position">
         <Reveal>
           <Eyebrow className="block">{HOME_POSITION.eyebrow}</Eyebrow>
           <p className="mt-10 max-w-5xl font-display text-3xl leading-[1.15] md:text-5xl lg:text-6xl">
@@ -145,7 +144,7 @@ export default function HomePage() {
       </section>
 
       {/* 04 — Architecture */}
-      <section className="tone-dark py-20 md:py-28" id="architecture">
+      <section className="tone-dark band-wipe py-20 md:py-28" id="architecture">
         <div className="container-shell">
           <Reveal>
             <SectionHeader
@@ -165,13 +164,29 @@ export default function HomePage() {
             />
           </Reveal>
           <div className="mt-14 border-t border-line-dark pt-12">
-            <LayerDiagram layers={ARCHITECTURE_LAYERS} short className="[&_button]:border-line-dark [&_button]:bg-ink [&_button]:hover:border-gold [&_.border-line]:!border-line-dark [&_.bg-panel]:!bg-ink [&_.text-muted]:!text-muted-light" />
+            <LayerDiagram
+              layers={ARCHITECTURE_LAYERS}
+              short
+              field
+              dark
+              className="[&_button]:border-line-dark [&_button]:bg-ink [&_button]:hover:border-gold [&_.border-line]:!border-line-dark [&_.bg-panel]:!bg-ink [&_.text-muted]:!text-muted-light"
+            />
           </div>
           <div className="mt-16 grid gap-10 lg:grid-cols-12">
             <Reveal className="lg:col-span-7">
-              <div className="figure-glow border border-line-dark p-4 md:p-8">
-                <PlatformFigure kind="gravity" dark />
-              </div>
+              <FigurePlate
+                caption="Field view · Gravity"
+                tone="dark"
+                annotations={[
+                  { label: "Shared field", x: 24, y: 34 },
+                  { label: "Layer convergence", x: 62, y: 48 },
+                  { label: "Compounding", x: 42, y: 72 },
+                ]}
+              >
+                <div className="figure-glow h-72 md:h-96">
+                  <PlatformFigure kind="gravity" dark />
+                </div>
+              </FigurePlate>
             </Reveal>
             <Reveal delay={100} className="lg:col-span-5">
               <Eyebrow tone="gold">{COMPOUNDING.eyebrow}</Eyebrow>
@@ -193,7 +208,7 @@ export default function HomePage() {
       </section>
 
       {/* 05 — Live entries */}
-      <section className="container-shell py-20 md:py-28">
+      <section className="container-shell py-20 md:py-28" id="live">
         <Reveal>
           <Eyebrow className="block">{HOME_LIVE.eyebrow}</Eyebrow>
           <h2 className="display-md mt-8">{HOME_LIVE.title}</h2>
@@ -207,6 +222,7 @@ export default function HomePage() {
                 </div>
                 <div className="md:col-span-4">
                   <Link
+                    prefetch={false}
                     href={`/platforms/${platform.slug}`}
                     className="font-display text-2xl transition-colors hover:text-gold md:text-3xl"
                   >
@@ -273,7 +289,7 @@ export default function HomePage() {
       </section>
 
       {/* 08 — Engagement */}
-      <section className="tone-dark py-20 md:py-28" id="engage">
+      <section className="tone-dark band-wipe py-20 md:py-28" id="engage">
         <div className="container-shell">
           <Reveal>
             <SectionHeader
@@ -285,9 +301,11 @@ export default function HomePage() {
                 <div>
                   <p className="lede text-muted-light">{HOME_ENGAGEMENT.body}</p>
                   <div className="mt-8">
-                    <Button href={HOME_ENGAGEMENT.cta.href} variant="primary">
-                      {HOME_ENGAGEMENT.cta.label}
-                    </Button>
+                    <MagneticWrap>
+                      <Button href={HOME_ENGAGEMENT.cta.href} variant="primary">
+                        {HOME_ENGAGEMENT.cta.label}
+                      </Button>
+                    </MagneticWrap>
                   </div>
                 </div>
               }
@@ -297,7 +315,7 @@ export default function HomePage() {
       </section>
 
       {/* 09 — Contact strip */}
-      <section className="container-shell py-16 md:py-20">
+      <section className="container-shell py-16 md:py-20" id="contact">
         <Reveal>
           <div className="grid gap-8 md:grid-cols-12 md:items-end">
             <div className="md:col-span-8">

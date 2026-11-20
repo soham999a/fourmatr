@@ -37,6 +37,7 @@ export function SiteFooter() {
                       </a>
                     ) : (
                       <Link
+                        prefetch={false}
                         href={link.href}
                         className="text-sm transition-colors hover:text-gold"
                       >

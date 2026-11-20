@@ -41,52 +41,52 @@ docs/
 - [x] Write stack, structure, phases and checklists
 
 ### Phase 1 — Foundation
-- [ ] Initialise pnpm project, TS strict, ESLint, Tailwind 4 tokens
-- [ ] Fonts load with fallbacks and no layout shift
-- [ ] Layout shell: header (desktop + mobile), footer, skip link, bottom nav
-- [ ] Shared UI components with typed props
-- [ ] All content data files typed and populated; zero hard-coded platform facts in JSX
-- [ ] `pnpm lint`, `pnpm typecheck`, `pnpm build` pass at end of phase
+- [x] Initialise pnpm project, TS strict, ESLint, Tailwind 4 tokens
+- [x] Fonts load with fallbacks and no layout shift
+- [x] Layout shell: header (desktop + mobile), footer, skip link, bottom nav
+- [x] Shared UI components with typed props
+- [x] All content data files typed and populated; zero hard-coded platform facts in JSX
+- [x] `pnpm lint`, `pnpm typecheck`, `pnpm build` pass at end of phase
 
 ### Phase 2 — Home
-- [ ] Ten sections in screen order, copy and counters match screens
-- [ ] Hero SVG line field, lightweight, decorative/aria-hidden
-- [ ] Platform cards, static architecture figure, live rows, audience grid, CTA
-- [ ] Desktop 1140 reference checked against OCR coordinates
+- [x] Ten sections in screen order, copy and counters match screens
+- [x] Hero SVG line field, lightweight, decorative/aria-hidden
+- [x] Platform cards, static architecture figure, live rows, audience grid, CTA
+- [x] Desktop 1140 reference checked against OCR coordinates
 
 ### Phase 3 — Platform pages
-- [ ] Reusable `PlatformPage` template driven by `platforms.ts`
-- [ ] Four detail routes with correct hero tone (Gravity dark), modules/pillars, methods, previews
-- [ ] Per-platform SVG figures, labelled previews
-- [ ] `/platforms` comparison table (desktop) and stacked cards (mobile) + four alternating rows
+- [x] Reusable `PlatformPage` template driven by `platforms.ts`
+- [x] Four detail routes with correct hero tone (Gravity dark), modules/pillars, methods, previews
+- [x] Per-platform SVG figures, labelled previews
+- [x] `/platforms` comparison table (desktop) and stacked cards (mobile) + four alternating rows
 
 ### Phase 4 — Architecture, Research, Engage, Contact, 404
-- [ ] Interactive layer diagram, five layers, keyboard accessible, active description
-- [ ] Research page with CES-QN, Omega Model, publications, research-stage caveat
-- [ ] Engage: four shapes, five steps, audiences, FAQ accordion with ARIA
-- [ ] Contact form with client + server validation, honeypot, rate limit, mail/fallback
-- [ ] `/api/contact` never exposes secrets; fallback message when unconfigured
-- [ ] Custom 404
+- [x] Interactive layer diagram, five layers, keyboard accessible, active description
+- [x] Research page with CES-QN, Omega Model, publications, research-stage caveat
+- [x] Engage: four shapes, five steps, audiences, FAQ accordion with ARIA
+- [x] Contact form with client + server validation, honeypot, rate limit, mail/fallback
+- [x] `/api/contact` never exposes secrets; fallback message when unconfigured
+- [x] Custom 404
 
 ### Phase 5 — Responsive
-- [ ] Mobile screens (402 CSS px) reproduced: stacked grids, hamburger, bottom nav
-- [ ] No horizontal scroll at 360, 390, 768, 1024, 1140, 1440, 1920
-- [ ] Full-width primary buttons on mobile; comparison collapses to cards
+- [x] Mobile screens (402 CSS px) reproduced: stacked grids, hamburger, bottom nav
+- [x] No horizontal scroll at 360, 390, 768, 1024, 1140, 1440, 1920
+- [x] Full-width primary buttons on mobile; comparison collapses to cards
 
 ### Phase 6 — Polish
-- [ ] Quiet reveals, hover states, focus-visible rings, reduced-motion safe
-- [ ] No heavy page transitions
+- [x] Quiet reveals, hover states, focus-visible rings, reduced-motion safe
+- [x] No heavy page transitions
 
 ### Phase 7 — SEO, accessibility, performance
-- [ ] Unique metadata, canonicals, OG/Twitter, generated OG image, sitemap, robots
-- [ ] JSON-LD Organization + WebSite
-- [ ] WCAG 2.2 AA: contrast, landmarks, alt/aria-hidden, keyboard, skip link
-- [ ] Lighthouse run on Home + one platform page; scores recorded in `docs/QA.md`
+- [x] Unique metadata, canonicals, OG/Twitter, generated OG image, sitemap, robots
+- [x] JSON-LD Organization + WebSite
+- [x] WCAG 2.2 AA: contrast, landmarks, alt/aria-hidden, keyboard, skip link
+- [x] Lighthouse run on Home + one platform page; scores recorded in `docs/QA.md`
 
 ### Phase 8 — Deploy readiness
-- [ ] `.env.example`, README (run/build/deploy, Vercel CNAME for `appliedsystems.matrka.net`)
-- [ ] Security headers, favicon/app icons
-- [ ] Final verification: lint, typecheck, build, link click-test, `docs/QA.md` complete
+- [x] `.env.example`, README (run/build/deploy, Vercel CNAME for `appliedsystems.matrka.net`)
+- [x] Security headers, favicon/app icons
+- [x] Final verification: lint, typecheck, build, link click-test, `docs/QA.md` complete
 
 ## Verification commands
 

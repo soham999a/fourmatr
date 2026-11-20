@@ -39,7 +39,13 @@ export function Button({
     : {};
 
   return (
-    <Link href={href} className={classes} aria-label={ariaLabel} {...(external ? externalProps : {})}>
+    <Link
+      href={href}
+      prefetch={false}
+      className={classes}
+      aria-label={ariaLabel}
+      {...(external ? externalProps : {})}
+    >
       <span className="relative z-10 inline-flex items-center gap-3">
         {children}
         {external ? <span aria-hidden="true">↗</span> : null}

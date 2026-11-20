@@ -1,5 +1,6 @@
 import { HeroField } from "@/components/figures/HeroField";
 import { PointerGlow } from "@/components/figures/PointerGlow";
+import { LazyShaderField as ShaderField } from "@/components/webgl/LazyShaderField";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 
@@ -7,7 +8,7 @@ export default function NotFound() {
   return (
     <section className="tone-dark-home relative flex min-h-[70vh] items-center overflow-hidden">
       <div className="pointer-events-none absolute inset-0 text-bone/60">
-        <HeroField variant="home" />
+        <ShaderField variant="hero" dark fallback={<HeroField variant="home" />} />
       </div>
       <PointerGlow />
       <div className="container-shell relative py-24">

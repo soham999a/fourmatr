@@ -46,7 +46,7 @@ export function SiteHeader() {
             >
               Parent: {SITE.parent.label} <span aria-hidden="true">↗</span>
             </a>
-            <Link
+            <Link prefetch={false}
               href="/contact"
               className="border border-gold px-5 py-2 font-mono text-[0.625rem] uppercase tracking-[0.14em] text-gold transition-colors hover:bg-gold hover:text-ink"
             >
@@ -56,7 +56,7 @@ export function SiteHeader() {
         </div>
 
         <div className="flex h-[76px] items-center justify-between gap-8">
-          <Link href="/" className="group flex items-baseline gap-2" aria-label="Matrka Applied Systems — home">
+          <Link prefetch={false} href="/" className="group flex items-baseline gap-2" aria-label="Matrka Applied Systems — home">
             <span className="font-display text-2xl tracking-[-0.03em]">MATRKA</span>
             <span className="hidden font-mono text-[0.625rem] uppercase tracking-[0.18em] opacity-70 sm:inline">
               Applied Systems
@@ -67,7 +67,7 @@ export function SiteHeader() {
             {NAV_ITEMS.map((item) => {
               const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
               return (
-                <Link
+                <Link prefetch={false}
                   key={item.href}
                   href={item.href}
                   aria-current={active ? "page" : undefined}
@@ -126,7 +126,7 @@ export function SiteHeader() {
           )}
         >
           {NAV_ITEMS.map((item, index) => (
-            <Link
+            <Link prefetch={false}
               key={item.href}
               href={item.href}
               className="mobile-nav-item font-display text-4xl leading-none"
@@ -145,7 +145,7 @@ export function SiteHeader() {
           >
             Parent: {SITE.parent.label} ↗
           </a>
-          <Link
+          <Link prefetch={false}
             href="/contact"
             onClick={() => setOpen(false)}
             className="mobile-nav-item mt-2 inline-flex w-fit border border-gold px-6 py-3 font-mono text-xs uppercase tracking-[0.14em] text-gold"

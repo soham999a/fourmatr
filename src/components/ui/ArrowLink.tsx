@@ -13,6 +13,7 @@ export function ArrowLink({ href, children, external, className }: ArrowLinkProp
   return (
     <Link
       href={href}
+      prefetch={false}
       className={cn(
         "group inline-flex items-center gap-2 border-b border-gold/60 pb-1 font-mono text-[0.6875rem] uppercase tracking-[0.16em] text-current transition-colors hover:border-gold hover:text-gold",
         className,

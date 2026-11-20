@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, IBM_Plex_Mono, Inter } from "next/font/google";
 import "./globals.css";
+import { RevealObserver } from "@/components/layout/RevealObserver";
 import { ScrollProgress } from "@/components/layout/ScrollProgress";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
@@ -9,7 +10,7 @@ import { SITE } from "@/content/site";
 
 const display = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400"],
   variable: "--font-cormorant",
   display: "swap",
 });
@@ -108,7 +109,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           }}
         />
       </head>
-      <body>
+      <body suppressHydrationWarning>
+        <RevealObserver />
         <ScrollProgress />
         <a
           href="#main"

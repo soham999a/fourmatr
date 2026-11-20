@@ -3,14 +3,23 @@
 import { useState } from "react";
 import type { ArchitectureLayer } from "@/content/architecture";
 import { cn } from "@/lib/cn";
+import { LazyShaderField as ShaderField } from "@/components/webgl/LazyShaderField";
 
 interface LayerDiagramProps {
   layers: ArchitectureLayer[];
   short?: boolean;
+  field?: boolean;
+  dark?: boolean;
   className?: string;
 }
 
-export function LayerDiagram({ layers, short = false, className }: LayerDiagramProps) {
+export function LayerDiagram({
+  layers,
+  short = false,
+  field = false,
+  dark = false,
+  className,
+}: LayerDiagramProps) {
   const [activeIndex, setActiveIndex] = useState(2);
   const active = layers[activeIndex];
 
@@ -28,8 +37,12 @@ export function LayerDiagram({ layers, short = false, className }: LayerDiagramP
   }
 
   return (
-    <div className={cn("grid gap-10 lg:grid-cols-12", className)}>
-      <div className="lg:col-span-7">
+    <div className={cn("relative", className)}>
+      {field ? (
+        <ShaderField variant="architecture" dark={dark} activeIndex={activeIndex} fallback={null} />
+      ) : null}
+      <div className="relative z-10 grid gap-10 lg:grid-cols-12">
+        <div className="lg:col-span-7">
         <p className="mb-5 font-mono text-[0.625rem] uppercase tracking-[0.2em] text-muted">
           Select a layer
         </p>
@@ -93,6 +106,7 @@ export function LayerDiagram({ layers, short = false, className }: LayerDiagramP
             Active layer · {active.number}
           </p>
         </div>
+      </div>
       </div>
     </div>
   );
