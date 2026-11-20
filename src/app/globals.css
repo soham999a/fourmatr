@@ -1313,3 +1313,66 @@ button:hover > .eyebrow {
     padding-bottom: 88px;
   }
 }
+
+@media (max-width: 480px) {
+  .reference-shell {
+    padding-inline: 20px;
+  }
+
+  .reference-section-kicker {
+    flex-wrap: wrap;
+    gap: 6px 12px;
+    padding-bottom: 12px;
+    font-size: 7px;
+  }
+
+  .reference-collab-layout {
+    gap: 20px;
+    padding: 30px 0 36px;
+  }
+
+  .reference-eyebrow {
+    font-size: 8px;
+    letter-spacing: 0.07em;
+  }
+
+  .reference-collab-title {
+    font-size: clamp(34px, 10.5vw, 44px);
+    line-height: 1.05;
+    letter-spacing: -0.055em;
+  }
+
+  .reference-collab-copy > p {
+    font-size: 13px;
+    line-height: 1.75;
+  }
+
+  .reference-small-copy {
+    margin: 16px 0 !important;
+    font-size: 8px !important;
+  }
+
+  .reference-light-button {
+    width: 100%;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 13px 14px;
+    font-size: 10px;
+  }
+
+  .reference-button-arrow {
+    font-size: 15px;
+  }
+
+  .reference-audience-strip {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 12px;
+    padding: 14px 0;
+    font-size: 7px;
+  }
+
+  .reference-audience-strip span {
+    min-width: 0;
+  }
+}
